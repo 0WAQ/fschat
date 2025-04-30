@@ -1,0 +1,6 @@
+.vs/
+.vscode/
+
+build
+client/build
+server/build
