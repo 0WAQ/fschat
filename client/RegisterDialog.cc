@@ -8,9 +8,9 @@ RegisterDialog::RegisterDialog(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // 密码框设置为 `密码模式`
+    // 密码框设置为隐藏状态
     ui->passwd_edit->setEchoMode(QLineEdit::Password);
-    ui->passwd_edit->setEchoMode(QLineEdit::Password);
+    ui->confirm_edit->setEchoMode(QLineEdit::Password);
 
     // 设置 error_tip_label 的属性
     ui->error_tip_label->setProperty("state", "normal");
