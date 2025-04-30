@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
         qDebug("Open Success.");
         QString style = qss.readAll();
         // TODO: 颜色自适应
-        // a.setStyleSheet(style);
+        a.setStyleSheet(style);
         qss.close();
     }
     else {

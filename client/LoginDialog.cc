@@ -7,7 +7,7 @@ LoginDialog::LoginDialog(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // 点击 register_button 时, 调用 switchRegister (发起一个信号)
+    // 点击 register_button 时, 发起 switchRegister 信号
     connect(ui->register_button, &QPushButton::clicked, this, &LoginDialog::switchRegister);
 }
 

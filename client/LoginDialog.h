@@ -19,6 +19,9 @@ private:
     Ui::LoginDialog *ui;
 
 signals:
+    /**
+     * @brief 信号, 用于切换到注册界面, 会执行 MainWindow::SlotSwitchRegister 槽函数
+     */
     void switchRegister();
 };
 

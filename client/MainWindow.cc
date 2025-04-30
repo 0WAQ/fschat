@@ -1,34 +1,28 @@
 #include "MainWindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-    , _login_dialog(new LoginDialog())
-    , _register_dialog(new RegisterDialog())
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    _login_dialog(new LoginDialog(this)),
+    _register_dialog(new RegisterDialog(this))
 {
     ui->setupUi(this);
 
     setCentralWidget(_login_dialog);
-    _login_dialog->show();
 
     // 收到 switchRegister 信号时, 调用 SlotSwitchRegister 槽函数
     connect(_login_dialog, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchRegister);
+
+    // 将 dialog 嵌入到 CentralWidget 中
+    _login_dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+    _register_dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+    _register_dialog->hide();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-
-    if (_login_dialog) {
-        delete _login_dialog;
-        _login_dialog = nullptr;
-    }
-
-    if (_register_dialog) {
-        delete _register_dialog;
-        _register_dialog = nullptr;
-    }
 }
 
 void MainWindow::SlotSwitchRegister()
