@@ -1,21 +1,25 @@
-﻿# CMakeList.txt: server 的 CMake 项目，在此处包括源代码并定义
-# 项目特定的逻辑。
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.16)
+project (server)
 
-# 如果支持，请为 MSVC 编译器启用热重载。
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
+set(CMAKE_CXX_STANDARD_REQUIRED 20)
 
-project ("server")
+# 搜索 boost
+set(BOOST_ROOT "D:/cppsoft/boost_1_88_0")
+set(BOOST_USE_STATIC_LIBS ON)
+set(BOOST_NO_SYSTEM_PATH ON)
+set(BOOST_INCLUDE_DIR "${BOOST_ROOT}/include")
+set(BOOST_LIBRARY_DIR "${BOOST_ROOT}/lib")
+find_package(Boost 1.88.0 REQUIRED ALL)
 
-# 将源代码添加到此项目的可执行文件。
-add_executable (server "server.cpp" "server.h")
+# 搜索 jsoncpp
+set(JSONCPP_ROOT "D:/cppsoft/jsoncpp-1.9.6/out/install/x64-release")
+set(JSONCPP_INCLUDE_DIR "${JSONCPP_ROOT}/include")
+set(JSONCPP_LIBRARY_DIR "${JSONCPP_ROOT}/lib")
+set(JSONCPP_SHARED_DIR  "${JSONCPP_ROOT}/bin")
+find_library(JSONCPP_LIBRARY
+	NAMES  jsoncpp_static.lib
+	PATHS "${JSONCPP_LIBRARY_DIR}"
+)
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET server PROPERTY CXX_STANDARD 20)
-endif()
-
-# TODO: 如有需要，请添加测试并安装目标。
+# 添加子模块
+add_subdirectory(GateServer)
