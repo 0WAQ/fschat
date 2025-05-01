@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(_login_dialog);
 
     // 收到 switchRegister 信号时, 调用 SlotSwitchRegister 槽函数
-    connect(_login_dialog, &LoginDialog::switchRegister, this, &MainWindow::SlotSwitchRegister);
+    connect(_login_dialog, &LoginDialog::SwitchRegister, this, &MainWindow::slot_switch_register);
 
     // 将 dialog 嵌入到 CentralWidget 中
     _login_dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
@@ -25,7 +25,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::SlotSwitchRegister()
+void MainWindow::slot_switch_register()
 {
     // 隐藏 login 界面, 显示 register 界面
     setCentralWidget(_register_dialog);

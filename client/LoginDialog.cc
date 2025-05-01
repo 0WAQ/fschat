@@ -11,7 +11,7 @@ LoginDialog::LoginDialog(QWidget *parent)
     ui->passwd_edit->setEchoMode(QLineEdit::Password);
 
     // 点击 register_button 时, 发起 switchRegister 信号
-    connect(ui->register_button, &QPushButton::clicked, this, &LoginDialog::switchRegister);
+    connect(ui->register_button, &QPushButton::clicked, this, &LoginDialog::SwitchRegister);
 }
 
 LoginDialog::~LoginDialog()

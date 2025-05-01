@@ -30,7 +30,7 @@ public:
     /**
      * @brief 槽函数, 用于执行切换到注册界面
      */
-    void SlotSwitchRegister();
+    void slot_switch_register();
 
 private:
     Ui::MainWindow *ui;

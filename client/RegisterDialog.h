@@ -2,6 +2,9 @@
 #define REGISTERDIALOG_H
 
 #include <QDialog>
+#include <QMap>
+
+#include "global.h"
 
 namespace Ui {
 class RegisterDialog;
@@ -16,21 +19,32 @@ public:
     ~RegisterDialog();
 
 private:
+
+    /**
+     * @brief 初始化 handlers
+     */
+    void initHttpHandlers();
+
     /**
      * @brief 修改邮箱行状态, 并显示提示信息
-     * @param msg 提示信息
-     * @param is_ok 判断邮箱格式是否正确
      */
     void showTipMsg(QString msg, bool is_ok);
 
 private slots:
-    /**
-     * @brief 槽函数, 点击获取验证码时, 用于验证邮箱是否否和格式
-     */
+
     void on_verify_button_clicked();
+    void on_cancel_button_clicked();
+
+public slots:
+    /**
+     * @brief 槽函数, 收到 http 请求
+     */
+    void slot_mod_register_http_request_finish(RequestId id, QString res, ErrorCode ec);
 
 private:
     Ui::RegisterDialog *ui;
+
+    QMap<RequestId, std::function<void(const QJsonObject&)>> _handlers;
 };
 
 #endif // REGISTERDIALOG_H
