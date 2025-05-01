@@ -18,6 +18,10 @@ RegisterDialog::RegisterDialog(QWidget *parent)
     ui->error_tip_label->setProperty("state", "normal");
     repolish(ui->error_tip_label);
 
+    // 连接点击按钮和发出对应信号
+    // connect(ui->confirm_button, &QPushButton::clicked, this, nullptr);  // TODO:
+    connect(ui->cancel_button, &QPushButton::clicked, this, &RegisterDialog::sig_switch_login);
+
     connect(&HttpManager::GetInstance(), &HttpManager::sig_mod_register_http_request_finish,
             this, &RegisterDialog::slot_mod_register_http_request_finish);
 
@@ -56,7 +60,8 @@ void RegisterDialog::showTipMsg(QString msg, bool is_ok)
 
 void RegisterDialog::on_verify_button_clicked()
 {
-    auto email = ui->email_edit->text();
+    // 获取邮箱
+    QString email = ui->email_edit->text();
 
     // TAG: 该函数会被频繁调用, 故将 regex 对象设置为 static, 避免频繁构造
     static QRegularExpression regex{ R"((\w+)(\.|_)?(\w*)@(\w+)(\.(\w+))+)" };
@@ -68,6 +73,11 @@ void RegisterDialog::on_verify_button_clicked()
     else {
         showTipMsg(tr("无效的邮箱地址"), false);
     }
+}
+
+void RegisterDialog::on_confirm_button_clicked()
+{
+
 }
 
 void RegisterDialog::on_cancel_button_clicked()

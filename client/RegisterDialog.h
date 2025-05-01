@@ -30,10 +30,16 @@ private:
      */
     void showTipMsg(QString msg, bool is_ok);
 
+
+signals:
+
+    void sig_switch_login();
+
 private slots:
 
-    void on_verify_button_clicked();
-    void on_cancel_button_clicked();
+    void on_verify_button_clicked();    // 注册界面点击获取按钮
+    void on_confirm_button_clicked();   // 注册界面点击确认按钮
+    void on_cancel_button_clicked();    // 注册界面点击取消按钮
 
 public slots:
     /**

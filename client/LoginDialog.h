@@ -15,14 +15,14 @@ public:
     explicit LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog();
 
-private:
-    Ui::LoginDialog *ui;
-
 signals:
     /**
-     * @brief 信号, 用于切换到注册界面, 会执行 MainWindow::SlotSwitchRegister 槽函数
+     * @brief 信号, 用于切换到注册界面, 会执行 MainWindow::slot_switch_register 槽函数
      */
-    void SwitchRegister();
+    void sig_switch_register();
+
+private:
+    Ui::LoginDialog *ui;
 };
 
 #endif // LOGINDIALOG_H

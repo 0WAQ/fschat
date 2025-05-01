@@ -32,6 +32,11 @@ public:
      */
     void slot_switch_register();
 
+    /**
+     * @brief 槽函数, 用于执行切换到登录界面
+     */
+    void slot_switch_login();
+
 private:
     Ui::MainWindow *ui;
 
