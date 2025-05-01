@@ -19,7 +19,7 @@ RegisterDialog::RegisterDialog(QWidget *parent)
     repolish(ui->error_tip_label);
 
     // 连接点击按钮和发出对应信号
-    // connect(ui->confirm_button, &QPushButton::clicked, this, nullptr);  // TODO:
+    // connect(ui->confirm_button, &QPushButton::clicked, this, nullptr);  // TODO: 注册界面的 confirm_buttton
     connect(ui->cancel_button, &QPushButton::clicked, this, &RegisterDialog::sig_switch_login);
 
     connect(&HttpManager::GetInstance(), &HttpManager::sig_mod_register_http_request_finish,
