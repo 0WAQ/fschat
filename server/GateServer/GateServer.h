@@ -1,19 +1,19 @@
-﻿#ifndef _GATESERVER_
-#define _GATESERVER_
+﻿#ifndef _GATESERVER_H_
+#define _GATESERVER_H_
 
-/**
- * @brief 网关服务器
- */
-class GateServer
-{
-public:
+///**
+// * @brief 网关服务器
+// */
+//class GateServer
+//{
+//public:
+//
+//	GateServer();
+//	
+//	~GateServer();
+//
+//private:
+//
+//};
 
-	GateServer();
-	
-	~GateServer();
-
-private:
-
-};
-
-#endif // _GATESERVER_
+#endif // _GATESERVER_H_

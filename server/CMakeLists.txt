@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED 20)
 set(BOOST_ROOT "D:/cppsoft/boost_1_88_0")
 set(BOOST_USE_STATIC_LIBS ON)
 set(BOOST_NO_SYSTEM_PATH ON)
-set(BOOST_INCLUDE_DIR "${BOOST_ROOT}/include")
-set(BOOST_LIBRARY_DIR "${BOOST_ROOT}/lib")
-find_package(Boost 1.88.0 REQUIRED ALL)
+set(BOOST_INCLUDE_DIR "${BOOST_ROOT}/include/boost-1_88/")
+set(BOOST_LIBRARY_DIR "${BOOST_ROOT}/lib/")
+find_package(Boost 1.88.0 REQUIRED COMPONENTS ALL)
 
 # 搜索 jsoncpp
 set(JSONCPP_ROOT "D:/cppsoft/jsoncpp-1.9.6/out/install/x64-release")

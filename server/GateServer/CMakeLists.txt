@@ -1,14 +1,19 @@
-﻿# include_directories(${Boost_INCLUDE_DIRS})
-# link_libraries(${Boost_LIBRARY_DIRS})
+﻿project(GateServer)
 
-add_executable(GateServer "GateServer.h" "GateServer.cpp")
+add_executable(${PROJECT_NAME}
+		"ulti.h" "singleton.h"
+		"GateServer.h" "GateServer.cpp"
+		"CServer.h" "CServer.cpp"
+		"HttpConnection.h" "HttpConnection.cpp"
+		"LogicSystem.h" "LogicSystem.cpp"
+)
 
-target_include_directories(GateServer PRIVATE
+target_include_directories(${PROJECT_NAME} PRIVATE
 	${Boost_INCLUDES}
 	${JSONCPP_INCLUDE_DIR}
 )
 
-target_link_libraries(GateServer PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE
 	${Boost_LIBRARIES}
 	${JSONCPP_LIBRARY_DIR}/jsoncpp_static.lib
 )
