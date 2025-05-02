@@ -1,7 +1,8 @@
 ﻿project(GateServer)
 
 add_executable(${PROJECT_NAME}
-		"ulti.h" "singleton.h"
+		"singleton.h"
+		"ulti.h" "ulti.cpp"
 		"GateServer.h" "GateServer.cpp"
 		"CServer.h" "CServer.cpp"
 		"HttpConnection.h" "HttpConnection.cpp"

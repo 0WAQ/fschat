@@ -11,7 +11,58 @@ int main()
 	// TODO: get_test
 	LogicSystem::GetInstance().registerGet("/get_test",
 		[](std::shared_ptr<HttpConnection> conn) {
-			beast::ostream(conn->response().body()) << "receive get_test req";
+			beast::ostream(conn->response().body()) << "receive get_test req\n";
+			int i = 0;
+			for (auto& elem : conn->params()) {
+				++i;
+				beast::ostream(conn->response().body()) << "param " << i << ": key=" << elem.first;
+				beast::ostream(conn->response().body()) << ", value=" << elem.second << std::endl;
+			}
+		});
+
+	LogicSystem::GetInstance().registerPost("/get_verify_code",
+		[](std::shared_ptr<HttpConnection> conn) -> bool {
+			// 获取请求体
+			std::string body = beast::buffers_to_string(conn->request().body().data());
+			
+			// TODO: 打印日志
+			std::cout << "receive body is " << body << std::endl;
+
+			// 设置响应头
+			conn->response().set(http::field::content_type, "text/json");
+
+			Json::Value request_json;
+			Json::Value response_json;
+			Json::Reader reader;
+		
+			// 反序列化 body 为 json 对象
+			if (!reader.parse(body, request_json)) {
+				response_json["error"] = ErrorCode::EC_VALID_JSON;
+				beast::ostream(conn->response().body()) << response_json.toStyledString();
+
+				// TODO: 打印日志
+				std::cout << "Failed to parse JSON data!" << std::endl;
+				return true;
+			}
+
+			// 提取 email 字段
+			if (!request_json.isMember("email")) {
+				response_json["error"] = ErrorCode::EC_VALID_JSON;
+				beast::ostream(conn->response().body()) << response_json.toStyledString();
+
+				// TODO: 打印日志
+				std::cout << "Invalid JSON: No \'Email\' Field" << std::endl;
+				return true;
+			}
+
+			auto email = request_json["email"].asString();
+			response_json["error"] = 0;
+			response_json["email"] = request_json["email"]; // TODO: 获取验证码
+			beast::ostream(conn->response().body()) << response_json.toStyledString();
+
+			// TODO: 打印日志
+			std::cout << "email is " << email << std::endl;
+			return true;
 		});
 
 	try {
@@ -23,11 +74,12 @@ int main()
 				if (ec) {
 					return;
 				}
-
 				ioc.stop();
 			});
 
 		std::make_shared<CServer>(ioc, port)->start();
+		// TODO: 打印日志
+		std::cout << "GateServer listen on port: " << port << std::endl;
 		ioc.run();
 	}
 	catch (std::exception& e) {

@@ -9,20 +9,26 @@ class HttpConnection : public std::enable_shared_from_this<HttpConnection>
 {
 public:
 
-	friend class LogicSystem;
+	// friend class LogicSystem;
 
 public:
 
 	HttpConnection(tcp::socket socket);
 
 	void start();
-	
+
 	HttpRequest& request() { return _request; }
 	HttpResponse& response() { return _response; }
+	std::unordered_map<std::string, std::string>& params() { return _params; }
 
 	~HttpConnection();
 
 private:
+
+	/**
+	 * @brief 解析查询参数
+	 */
+	void preParseGetParam();
 
 	void checkDeadline();
 	void writeResponse();
@@ -38,6 +44,9 @@ private:
 		_socket.get_executor(),
 		std::chrono::seconds{ 60 }
 	};
+
+	std::string _url;
+	std::unordered_map<std::string, std::string> _params;
 };
 
 #endif // _HTTPCONNECTION_H_
