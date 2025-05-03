@@ -16,5 +16,5 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
 	${Boost_LIBRARIES}
-	${JSONCPP_LIBRARY_DIR}/jsoncpp_static.lib
+	${JSONCPP_LIBRARY_DIR}/${JSONCPP_LIBRARY}
 )
