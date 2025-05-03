@@ -8,3 +8,5 @@ server/build
 out/
 client/out
 server/out
+
+server/CMakeSettings.json
