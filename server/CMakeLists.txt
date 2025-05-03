@@ -14,8 +14,8 @@ string(TOLOWER "${CMAKE_BUILD_TYPE}" BUILD_TYPE_LOWER)
 
 # 搜索 boost
 set(Boost_ROOT "${THIRD_PARTY}/boost/${BUILD_TYPE_LOWER}")
-set(Boost_INCLUDE_DIR "${Boost_ROOT}/include/boost/")
-set(Boost_LIBRARY_DIR "${Boost_ROOT}/lib/")
+set(Boost_INCLUDE_DIR "${Boost_ROOT}/include")
+set(Boost_LIBRARY_DIR "${Boost_ROOT}/lib")
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_NO_SYSTEM_PATH ON)
 set(Boost_DIR "${Boost_ROOT}/lib/cmake/boost")
@@ -38,9 +38,9 @@ find_package(protobuf CONFIG REQUIRED)
 
 # 搜索 grpc
 set(gRPC_ROOT "${THIRD_PARTY}/grpc/${BUILD_TYPE_LOWER}")
-set(gRPC_DIR "${gRPC_ROOT}/lib/cmake/grpc")
 set(gRPC_INCLUDE_DIR "${gRPC_ROOT}/include")
 set(gRPC_LIBRARY_DIR "${gRPC_ROOT}/lib")
+set(gRPC_DIR "${gRPC_ROOT}/lib/cmake/grpc")
 find_package(gRPC CONFIG REQUIRED)
 
 
