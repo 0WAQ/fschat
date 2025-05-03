@@ -1,6 +1,10 @@
 .vs/
 .vscode/
 
-build
+build/
 client/build
+server/build
+
+out/
+client/out
 server/out
