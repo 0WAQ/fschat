@@ -67,8 +67,14 @@ void RegisterDialog::on_verify_button_clicked()
     static QRegularExpression regex{ R"((\w+)(\.|_)?(\w*)@(\w+)(\.(\w+))+)" };
     bool match = regex.match(email).hasMatch();
     if (match) {
+        // 发送 http 请求
+        QJsonObject json;
+        json["email"] = email;
+
+        // TODO: 从配置文件中读取
+        HttpManager::GetInstance().SendHttpRequest(QUrl(gate_url_prefix + "/get_verify_code"),
+                                                   json, RequestId::ID_GET_VERIFY_CODE, Modules::MOD_REGISTER);
         showTipMsg(tr("验证码已发送"), true);
-        // TODO: 发送 http 验证码
     }
     else {
         showTipMsg(tr("无效的邮箱地址"), false);

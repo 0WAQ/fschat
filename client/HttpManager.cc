@@ -8,7 +8,10 @@ HttpManager::HttpManager()
 
 void HttpManager::SendHttpRequest(QUrl url, QJsonObject json, RequestId id, Modules mod)
 {
+    // 序列化 json 对象为字节流
     QByteArray data = QJsonDocument(json).toJson();
+
+    // 构造 http 请求
     QNetworkRequest request{ url };
 
     // 设置 http 请求头
@@ -19,7 +22,7 @@ void HttpManager::SendHttpRequest(QUrl url, QJsonObject json, RequestId id, Modu
     QNetworkReply *reply = _manager.post(request, data);
 
     // 等待 reply 发送 finish 信号, 处理 http 响应
-    auto self = shared_from_this();
+    auto self = this;   // TAG: shared_from_this 有个要求就是对象必须要由 shared_ptr 管理, 唯一单例没有必要
     QObject::connect(reply, &QNetworkReply::finished, [self, reply, id, mod]() {
         // 处理错误情况
         if (reply->error() != QNetworkReply::NoError) {

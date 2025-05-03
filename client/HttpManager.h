@@ -16,8 +16,7 @@
  * @attention CRTP
  */
 class HttpManager : public QObject,
-                    public Singleton<HttpManager>,
-                    public std::enable_shared_from_this<HttpManager>
+                    public Singleton<HttpManager>
 {
     Q_OBJECT
 
@@ -30,6 +29,7 @@ private:
 
     HttpManager();
 
+public:
     /**
      * @brief SendHttpRequest 发送 http 请求
      * @param url

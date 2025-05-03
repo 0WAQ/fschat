@@ -6,6 +6,9 @@
 #include <QRegularExpression>
 #include <QByteArray>
 #include <QNetworkReply>
+#include <QJsonObject>
+#include <QSettings>
+#include <QDir>
 
 #include <functional>
 #include <memory>
@@ -31,5 +34,7 @@ enum ErrorCode {
     EC_PARSE_JSON_FAILED = 1,	// json 解析失败
     EC_NETWORK = 2,				// 网络错误
 };
+
+extern QString gate_url_prefix;
 
 #endif // GLOBAL_H

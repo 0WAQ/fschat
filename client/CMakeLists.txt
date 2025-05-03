@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         global.cc
         singleton.h
         HttpManager.h HttpManager.cc
+        config.ini
 
     )
 # Define target properties for Android with Qt 6 as:
@@ -71,6 +72,14 @@ install(TARGETS client
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+# install(FILES ${PROJECT_SOURCE_DIR}/config.ini DESTINATION ${CMAKE_INSTALL_BINDIR})
+add_custom_command(TARGET client POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+    ${CMAKE_CURRENT_SOURCE_DIR}/config.ini
+    $<TARGET_FILE_DIR:client>/config.ini
+    COMMENT "Copying config.ini to build directory"
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
