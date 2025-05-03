@@ -7,14 +7,18 @@ add_executable(${PROJECT_NAME}
 		"CServer.h" "CServer.cpp"
 		"HttpConnection.h" "HttpConnection.cpp"
 		"LogicSystem.h" "LogicSystem.cpp"
+		"message.pb.h" "message.pb.cc"
+		"message.grpc.pb.h" "message.grpc.pb.cc"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
 	${Boost_INCLUDES}
-	${JSONCPP_INCLUDE_DIR}
+	${jsoncpp_INCLUDE_DIR}
+	${gRPC_INCLUDE_DIR}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
 	${Boost_LIBRARIES}
-	${JSONCPP_LIBRARY_DIR}/${JSONCPP_LIBRARY}
+	${jsoncpp_LIBRARIES}/libjsoncpp.a
+	gRPC::grpc++
 )
