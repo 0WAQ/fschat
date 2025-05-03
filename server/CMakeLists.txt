@@ -19,7 +19,7 @@ set(Boost_LIBRARY_DIR "${Boost_ROOT}/lib")
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_NO_SYSTEM_PATH ON)
 set(Boost_DIR "${Boost_ROOT}/lib/cmake/boost")
-find_package(Boost 1.88.0 REQUIRED COMPONENTS system thread)
+find_package(Boost 1.88.0 REQUIRED COMPONENTS system thread filesystem)
 
 
 # 搜索 jsoncpp

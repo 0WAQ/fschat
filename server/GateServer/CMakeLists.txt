@@ -1,14 +1,17 @@
 ﻿project(GateServer)
 
 add_executable(${PROJECT_NAME}
+		"main.cpp"
 		"singleton.h"
 		"ulti.h" "ulti.cpp"
 		"GateServer.h" "GateServer.cpp"
-		"CServer.h" "CServer.cpp"
 		"HttpConnection.h" "HttpConnection.cpp"
 		"LogicSystem.h" "LogicSystem.cpp"
 		"message.pb.h" "message.pb.cc"
 		"message.grpc.pb.h" "message.grpc.pb.cc"
+		"message.proto"
+		"GetVerifyCodeRpcClient.h" "GetVerifyCodeRpcClient.cpp"
+		"ConfigManager.h" "ConfigManager.cpp"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -21,4 +24,11 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 	${Boost_LIBRARIES}
 	${jsoncpp_LIBRARY_DIR}/libjsoncpp.a
 	gRPC::grpc++
+)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+	${CMAKE_CURRENT_SOURCE_DIR}/config.ini
+	$<TARGET_FILE_DIR:${PROJECT_NAME}>/config.ini
+	COMMENT "Copying config.ini to build directory"
 )

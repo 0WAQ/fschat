@@ -1,89 +1,37 @@
-ï»¿#include <json/json.h>
-#include <json/value.h>
-#include <json/reader.h>
-
-#include "CServer.h"
-#include "LogicSystem.h"
+#include "GateServer.h"
 #include "HttpConnection.h"
 
-int main()
+GateServer::GateServer(boost::asio::io_context& ctx, unsigned short port)
+	: _ctx(ctx)
+	, _acceptor(ctx, tcp::endpoint{ tcp::v4(), port })
+	, _socket(ctx)
 {
-	// TODO: get_test
-	LogicSystem::GetInstance().registerGet("/get_test",
-		[](std::shared_ptr<HttpConnection> conn) {
-			beast::ostream(conn->response().body()) << "receive get_test req\n";
-			int i = 0;
-			for (auto& elem : conn->params()) {
-				++i;
-				beast::ostream(conn->response().body()) << "param " << i << ": key=" << elem.first;
-				beast::ostream(conn->response().body()) << ", value=" << elem.second << std::endl;
-			}
-		});
+}
 
-	LogicSystem::GetInstance().registerPost("/get_verify_code",
-		[](std::shared_ptr<HttpConnection> conn) -> bool {
-			// è·å–è¯·æ±‚ä½“
-			std::string body = beast::buffers_to_string(conn->request().body().data());
-			
-			// TODO: æ‰“å°æ—¥å¿—
-			std::cout << "receive body is " << body << std::endl;
-
-			// è®¾ç½®å“åº”å¤´
-			conn->response().set(http::field::content_type, "text/json");
-
-			Json::Value request_json;
-			Json::Value response_json;
-			Json::Reader reader;
-		
-			// ååºåˆ—åŒ– body ä¸º json å¯¹è±¡
-			if (!reader.parse(body, request_json)) {
-				response_json["error"] = ErrorCode::EC_VALID_JSON;
-				beast::ostream(conn->response().body()) << response_json.toStyledString();
-
-				// TODO: æ‰“å°æ—¥å¿—
-				std::cout << "Failed to parse JSON data!" << std::endl;
-				return true;
-			}
-
-			// æå– email å­—æ®µ
-			if (!request_json.isMember("email")) {
-				response_json["error"] = ErrorCode::EC_VALID_JSON;
-				beast::ostream(conn->response().body()) << response_json.toStyledString();
-
-				// TODO: æ‰“å°æ—¥å¿—
-				std::cout << "Invalid JSON: No \'Email\' Field" << std::endl;
-				return true;
-			}
-
-			auto email = request_json["email"].asString();
-			response_json["error"] = 0;
-			response_json["email"] = request_json["email"]; // TODO: è·å–éªŒè¯ç 
-			beast::ostream(conn->response().body()) << response_json.toStyledString();
-
-			// TODO: æ‰“å°æ—¥å¿—
-			std::cout << "email is " << email << std::endl;
-			return true;
-		});
-
-	try {
-		unsigned short port = static_cast<unsigned short>(8080);
-		net::io_context ioc{ 1 };
-		boost::asio::signal_set signals{ ioc, SIGINT, SIGTERM };
-		signals.async_wait(
-			[&ioc](const boost::system::error_code &ec, int signal_number) {
+void GateServer::start()
+{
+	auto self = shared_from_this();
+	_acceptor.async_accept(_socket, [self](beast::error_code ec) {
+			try {
+				// ³ö´íºó·ÅÆú¸ÃÁ¬½Ó, ¼ÌĞø¼àÌı
 				if (ec) {
+					// TODO: ´òÓ¡ÈÕÖ¾
+					self->start();
 					return;
 				}
-				ioc.stop();
-			});
 
-		std::make_shared<CServer>(ioc, port)->start();
-		// TODO: æ‰“å°æ—¥å¿—
-		std::cout << "GateServer listen on port: " << port << std::endl;
-		ioc.run();
-	}
-	catch (std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-		return EXIT_FAILURE;
-	}
+				// TODO: ´´½¨ĞÂÁ¬½Ó, ²¢ÇÒ´´½¨ HttpConncetion Àà¹ÜÀí¸ÃÁ¬½Ó
+				std::make_shared<HttpConnection>(std::move(self->_socket))->start();
+			
+				// ¼ÌĞø¼àÌı
+				self->start();
+			}
+			catch (std::exception& e) {
+			
+			}
+		});
+}
+
+GateServer::~GateServer()
+{
 }

@@ -2,16 +2,16 @@ syntax = "proto3";
 
 package message;
 
-message getVerifyReq {
+message GetVerifyCodeReq {
     string email = 1;
 }
 
-message getVerifyResp {
+message GetVerifyCodeRsp {
     int32 error = 1;
     string email = 2;
     string code = 3;
 }
 
-service getVerifyService {
-    rpc getVerifyCode (getVerifyReq) returns (getVerifyResp) { }
+service GetVerifyCodeService {
+    rpc getVerifyCode (GetVerifyCodeReq) returns (GetVerifyCodeRsp) { }
 }

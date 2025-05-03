@@ -53,14 +53,14 @@ extern "C" {
 extern const ::google::protobuf::internal::DescriptorTable descriptor_table_message_2eproto;
 }  // extern "C"
 namespace message {
-class getVerifyReq;
-struct getVerifyReqDefaultTypeInternal;
-extern getVerifyReqDefaultTypeInternal _getVerifyReq_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull getVerifyReq_class_data_;
-class getVerifyResp;
-struct getVerifyRespDefaultTypeInternal;
-extern getVerifyRespDefaultTypeInternal _getVerifyResp_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull getVerifyResp_class_data_;
+class GetVerifyCodeReq;
+struct GetVerifyCodeReqDefaultTypeInternal;
+extern GetVerifyCodeReqDefaultTypeInternal _GetVerifyCodeReq_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull GetVerifyCodeReq_class_data_;
+class GetVerifyCodeRsp;
+struct GetVerifyCodeRspDefaultTypeInternal;
+extern GetVerifyCodeRspDefaultTypeInternal _GetVerifyCodeRsp_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull GetVerifyCodeRsp_class_data_;
 }  // namespace message
 namespace google {
 namespace protobuf {
@@ -74,30 +74,30 @@ namespace message {
 
 // -------------------------------------------------------------------
 
-class getVerifyResp final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:message.getVerifyResp) */ {
+class GetVerifyCodeRsp final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:message.GetVerifyCodeRsp) */ {
  public:
-  inline getVerifyResp() : getVerifyResp(nullptr) {}
-  ~getVerifyResp() PROTOBUF_FINAL;
+  inline GetVerifyCodeRsp() : GetVerifyCodeRsp(nullptr) {}
+  ~GetVerifyCodeRsp() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(getVerifyResp* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(GetVerifyCodeRsp* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(getVerifyResp));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetVerifyCodeRsp));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR getVerifyResp(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR GetVerifyCodeRsp(::google::protobuf::internal::ConstantInitialized);
 
-  inline getVerifyResp(const getVerifyResp& from) : getVerifyResp(nullptr, from) {}
-  inline getVerifyResp(getVerifyResp&& from) noexcept
-      : getVerifyResp(nullptr, std::move(from)) {}
-  inline getVerifyResp& operator=(const getVerifyResp& from) {
+  inline GetVerifyCodeRsp(const GetVerifyCodeRsp& from) : GetVerifyCodeRsp(nullptr, from) {}
+  inline GetVerifyCodeRsp(GetVerifyCodeRsp&& from) noexcept
+      : GetVerifyCodeRsp(nullptr, std::move(from)) {}
+  inline GetVerifyCodeRsp& operator=(const GetVerifyCodeRsp& from) {
     CopyFrom(from);
     return *this;
   }
-  inline getVerifyResp& operator=(getVerifyResp&& from) noexcept {
+  inline GetVerifyCodeRsp& operator=(GetVerifyCodeRsp&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -125,13 +125,13 @@ class getVerifyResp final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const getVerifyResp& default_instance() {
-    return *reinterpret_cast<const getVerifyResp*>(
-        &_getVerifyResp_default_instance_);
+  static const GetVerifyCodeRsp& default_instance() {
+    return *reinterpret_cast<const GetVerifyCodeRsp*>(
+        &_GetVerifyCodeRsp_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 1;
-  friend void swap(getVerifyResp& a, getVerifyResp& b) { a.Swap(&b); }
-  inline void Swap(getVerifyResp* PROTOBUF_NONNULL other) {
+  friend void swap(GetVerifyCodeRsp& a, GetVerifyCodeRsp& b) { a.Swap(&b); }
+  inline void Swap(GetVerifyCodeRsp* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -139,7 +139,7 @@ class getVerifyResp final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(getVerifyResp* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(GetVerifyCodeRsp* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -147,13 +147,13 @@ class getVerifyResp final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  getVerifyResp* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<getVerifyResp>(arena);
+  GetVerifyCodeRsp* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GetVerifyCodeRsp>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const getVerifyResp& from);
+  void CopyFrom(const GetVerifyCodeRsp& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const getVerifyResp& from) { getVerifyResp::MergeImpl(*this, from); }
+  void MergeFrom(const GetVerifyCodeRsp& from) { GetVerifyCodeRsp::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -189,18 +189,18 @@ class getVerifyResp final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(getVerifyResp* PROTOBUF_NONNULL other);
+  void InternalSwap(GetVerifyCodeRsp* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "message.getVerifyResp"; }
+  static ::absl::string_view FullMessageName() { return "message.GetVerifyCodeRsp"; }
 
  protected:
-  explicit getVerifyResp(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  getVerifyResp(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const getVerifyResp& from);
-  getVerifyResp(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, getVerifyResp&& from) noexcept
-      : getVerifyResp(arena) {
+  explicit GetVerifyCodeRsp(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  GetVerifyCodeRsp(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const GetVerifyCodeRsp& from);
+  GetVerifyCodeRsp(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, GetVerifyCodeRsp&& from) noexcept
+      : GetVerifyCodeRsp(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -261,12 +261,12 @@ class getVerifyResp final : public ::google::protobuf::Message
   void _internal_set_error(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:message.getVerifyResp)
+  // @@protoc_insertion_point(class_scope:message.GetVerifyCodeRsp)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   0, 39,
+                                   0, 42,
                                    2>
       _table_;
 
@@ -284,7 +284,7 @@ class getVerifyResp final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const getVerifyResp& from_msg);
+        const GetVerifyCodeRsp& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr email_;
@@ -296,33 +296,33 @@ class getVerifyResp final : public ::google::protobuf::Message
   friend struct ::TableStruct_message_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull getVerifyResp_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull GetVerifyCodeRsp_class_data_;
 // -------------------------------------------------------------------
 
-class getVerifyReq final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:message.getVerifyReq) */ {
+class GetVerifyCodeReq final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:message.GetVerifyCodeReq) */ {
  public:
-  inline getVerifyReq() : getVerifyReq(nullptr) {}
-  ~getVerifyReq() PROTOBUF_FINAL;
+  inline GetVerifyCodeReq() : GetVerifyCodeReq(nullptr) {}
+  ~GetVerifyCodeReq() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(getVerifyReq* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+  void operator delete(GetVerifyCodeReq* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(getVerifyReq));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GetVerifyCodeReq));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR getVerifyReq(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR GetVerifyCodeReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline getVerifyReq(const getVerifyReq& from) : getVerifyReq(nullptr, from) {}
-  inline getVerifyReq(getVerifyReq&& from) noexcept
-      : getVerifyReq(nullptr, std::move(from)) {}
-  inline getVerifyReq& operator=(const getVerifyReq& from) {
+  inline GetVerifyCodeReq(const GetVerifyCodeReq& from) : GetVerifyCodeReq(nullptr, from) {}
+  inline GetVerifyCodeReq(GetVerifyCodeReq&& from) noexcept
+      : GetVerifyCodeReq(nullptr, std::move(from)) {}
+  inline GetVerifyCodeReq& operator=(const GetVerifyCodeReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline getVerifyReq& operator=(getVerifyReq&& from) noexcept {
+  inline GetVerifyCodeReq& operator=(GetVerifyCodeReq&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -350,13 +350,13 @@ class getVerifyReq final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const getVerifyReq& default_instance() {
-    return *reinterpret_cast<const getVerifyReq*>(
-        &_getVerifyReq_default_instance_);
+  static const GetVerifyCodeReq& default_instance() {
+    return *reinterpret_cast<const GetVerifyCodeReq*>(
+        &_GetVerifyCodeReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 0;
-  friend void swap(getVerifyReq& a, getVerifyReq& b) { a.Swap(&b); }
-  inline void Swap(getVerifyReq* PROTOBUF_NONNULL other) {
+  friend void swap(GetVerifyCodeReq& a, GetVerifyCodeReq& b) { a.Swap(&b); }
+  inline void Swap(GetVerifyCodeReq* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -364,7 +364,7 @@ class getVerifyReq final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(getVerifyReq* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(GetVerifyCodeReq* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -372,13 +372,13 @@ class getVerifyReq final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  getVerifyReq* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<getVerifyReq>(arena);
+  GetVerifyCodeReq* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GetVerifyCodeReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const getVerifyReq& from);
+  void CopyFrom(const GetVerifyCodeReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const getVerifyReq& from) { getVerifyReq::MergeImpl(*this, from); }
+  void MergeFrom(const GetVerifyCodeReq& from) { GetVerifyCodeReq::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -414,18 +414,18 @@ class getVerifyReq final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(getVerifyReq* PROTOBUF_NONNULL other);
+  void InternalSwap(GetVerifyCodeReq* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "message.getVerifyReq"; }
+  static ::absl::string_view FullMessageName() { return "message.GetVerifyCodeReq"; }
 
  protected:
-  explicit getVerifyReq(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  getVerifyReq(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const getVerifyReq& from);
-  getVerifyReq(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, getVerifyReq&& from) noexcept
-      : getVerifyReq(arena) {
+  explicit GetVerifyCodeReq(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  GetVerifyCodeReq(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const GetVerifyCodeReq& from);
+  GetVerifyCodeReq(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, GetVerifyCodeReq&& from) noexcept
+      : GetVerifyCodeReq(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -459,12 +459,12 @@ class getVerifyReq final : public ::google::protobuf::Message
   std::string* PROTOBUF_NONNULL _internal_mutable_email();
 
   public:
-  // @@protoc_insertion_point(class_scope:message.getVerifyReq)
+  // @@protoc_insertion_point(class_scope:message.GetVerifyCodeReq)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<0, 1,
-                                   0, 34,
+                                   0, 38,
                                    2>
       _table_;
 
@@ -482,7 +482,7 @@ class getVerifyReq final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const getVerifyReq& from_msg);
+        const GetVerifyCodeReq& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr email_;
@@ -492,7 +492,7 @@ class getVerifyReq final : public ::google::protobuf::Message
   friend struct ::TableStruct_message_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull getVerifyReq_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull GetVerifyCodeReq_class_data_;
 
 // ===================================================================
 
@@ -508,49 +508,49 @@ extern const ::google::protobuf::internal::ClassDataFull getVerifyReq_class_data
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// getVerifyReq
+// GetVerifyCodeReq
 
 // string email = 1;
-inline void getVerifyReq::clear_email() {
+inline void GetVerifyCodeReq::clear_email() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.email_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& getVerifyReq::email() const
+inline const std::string& GetVerifyCodeReq::email() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:message.getVerifyReq.email)
+  // @@protoc_insertion_point(field_get:message.GetVerifyCodeReq.email)
   return _internal_email();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void getVerifyReq::set_email(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void GetVerifyCodeReq::set_email(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:message.getVerifyReq.email)
+  // @@protoc_insertion_point(field_set:message.GetVerifyCodeReq.email)
 }
-inline std::string* PROTOBUF_NONNULL getVerifyReq::mutable_email()
+inline std::string* PROTOBUF_NONNULL GetVerifyCodeReq::mutable_email()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_email();
-  // @@protoc_insertion_point(field_mutable:message.getVerifyReq.email)
+  // @@protoc_insertion_point(field_mutable:message.GetVerifyCodeReq.email)
   return _s;
 }
-inline const std::string& getVerifyReq::_internal_email() const {
+inline const std::string& GetVerifyCodeReq::_internal_email() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.email_.Get();
 }
-inline void getVerifyReq::_internal_set_email(const std::string& value) {
+inline void GetVerifyCodeReq::_internal_set_email(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.email_.Set(value, GetArena());
 }
-inline std::string* PROTOBUF_NONNULL getVerifyReq::_internal_mutable_email() {
+inline std::string* PROTOBUF_NONNULL GetVerifyCodeReq::_internal_mutable_email() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.email_.Mutable( GetArena());
 }
-inline std::string* PROTOBUF_NULLABLE getVerifyReq::release_email() {
+inline std::string* PROTOBUF_NULLABLE GetVerifyCodeReq::release_email() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:message.getVerifyReq.email)
+  // @@protoc_insertion_point(field_release:message.GetVerifyCodeReq.email)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -561,7 +561,7 @@ inline std::string* PROTOBUF_NULLABLE getVerifyReq::release_email() {
   }
   return released;
 }
-inline void getVerifyReq::set_allocated_email(std::string* PROTOBUF_NULLABLE value) {
+inline void GetVerifyCodeReq::set_allocated_email(std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -572,78 +572,78 @@ inline void getVerifyReq::set_allocated_email(std::string* PROTOBUF_NULLABLE val
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
     _impl_.email_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:message.getVerifyReq.email)
+  // @@protoc_insertion_point(field_set_allocated:message.GetVerifyCodeReq.email)
 }
 
 // -------------------------------------------------------------------
 
-// getVerifyResp
+// GetVerifyCodeRsp
 
 // int32 error = 1;
-inline void getVerifyResp::clear_error() {
+inline void GetVerifyCodeRsp::clear_error() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.error_ = 0;
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline ::int32_t getVerifyResp::error() const {
-  // @@protoc_insertion_point(field_get:message.getVerifyResp.error)
+inline ::int32_t GetVerifyCodeRsp::error() const {
+  // @@protoc_insertion_point(field_get:message.GetVerifyCodeRsp.error)
   return _internal_error();
 }
-inline void getVerifyResp::set_error(::int32_t value) {
+inline void GetVerifyCodeRsp::set_error(::int32_t value) {
   _internal_set_error(value);
   _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:message.getVerifyResp.error)
+  // @@protoc_insertion_point(field_set:message.GetVerifyCodeRsp.error)
 }
-inline ::int32_t getVerifyResp::_internal_error() const {
+inline ::int32_t GetVerifyCodeRsp::_internal_error() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.error_;
 }
-inline void getVerifyResp::_internal_set_error(::int32_t value) {
+inline void GetVerifyCodeRsp::_internal_set_error(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.error_ = value;
 }
 
 // string email = 2;
-inline void getVerifyResp::clear_email() {
+inline void GetVerifyCodeRsp::clear_email() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.email_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& getVerifyResp::email() const
+inline const std::string& GetVerifyCodeRsp::email() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:message.getVerifyResp.email)
+  // @@protoc_insertion_point(field_get:message.GetVerifyCodeRsp.email)
   return _internal_email();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void getVerifyResp::set_email(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void GetVerifyCodeRsp::set_email(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:message.getVerifyResp.email)
+  // @@protoc_insertion_point(field_set:message.GetVerifyCodeRsp.email)
 }
-inline std::string* PROTOBUF_NONNULL getVerifyResp::mutable_email()
+inline std::string* PROTOBUF_NONNULL GetVerifyCodeRsp::mutable_email()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_email();
-  // @@protoc_insertion_point(field_mutable:message.getVerifyResp.email)
+  // @@protoc_insertion_point(field_mutable:message.GetVerifyCodeRsp.email)
   return _s;
 }
-inline const std::string& getVerifyResp::_internal_email() const {
+inline const std::string& GetVerifyCodeRsp::_internal_email() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.email_.Get();
 }
-inline void getVerifyResp::_internal_set_email(const std::string& value) {
+inline void GetVerifyCodeRsp::_internal_set_email(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.email_.Set(value, GetArena());
 }
-inline std::string* PROTOBUF_NONNULL getVerifyResp::_internal_mutable_email() {
+inline std::string* PROTOBUF_NONNULL GetVerifyCodeRsp::_internal_mutable_email() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.email_.Mutable( GetArena());
 }
-inline std::string* PROTOBUF_NULLABLE getVerifyResp::release_email() {
+inline std::string* PROTOBUF_NULLABLE GetVerifyCodeRsp::release_email() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:message.getVerifyResp.email)
+  // @@protoc_insertion_point(field_release:message.GetVerifyCodeRsp.email)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -654,7 +654,7 @@ inline std::string* PROTOBUF_NULLABLE getVerifyResp::release_email() {
   }
   return released;
 }
-inline void getVerifyResp::set_allocated_email(std::string* PROTOBUF_NULLABLE value) {
+inline void GetVerifyCodeRsp::set_allocated_email(std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -665,50 +665,50 @@ inline void getVerifyResp::set_allocated_email(std::string* PROTOBUF_NULLABLE va
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
     _impl_.email_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:message.getVerifyResp.email)
+  // @@protoc_insertion_point(field_set_allocated:message.GetVerifyCodeRsp.email)
 }
 
 // string code = 3;
-inline void getVerifyResp::clear_code() {
+inline void GetVerifyCodeRsp::clear_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.code_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const std::string& getVerifyResp::code() const
+inline const std::string& GetVerifyCodeRsp::code() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:message.getVerifyResp.code)
+  // @@protoc_insertion_point(field_get:message.GetVerifyCodeRsp.code)
   return _internal_code();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void getVerifyResp::set_code(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void GetVerifyCodeRsp::set_code(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   _impl_.code_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:message.getVerifyResp.code)
+  // @@protoc_insertion_point(field_set:message.GetVerifyCodeRsp.code)
 }
-inline std::string* PROTOBUF_NONNULL getVerifyResp::mutable_code()
+inline std::string* PROTOBUF_NONNULL GetVerifyCodeRsp::mutable_code()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_code();
-  // @@protoc_insertion_point(field_mutable:message.getVerifyResp.code)
+  // @@protoc_insertion_point(field_mutable:message.GetVerifyCodeRsp.code)
   return _s;
 }
-inline const std::string& getVerifyResp::_internal_code() const {
+inline const std::string& GetVerifyCodeRsp::_internal_code() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.code_.Get();
 }
-inline void getVerifyResp::_internal_set_code(const std::string& value) {
+inline void GetVerifyCodeRsp::_internal_set_code(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   _impl_.code_.Set(value, GetArena());
 }
-inline std::string* PROTOBUF_NONNULL getVerifyResp::_internal_mutable_code() {
+inline std::string* PROTOBUF_NONNULL GetVerifyCodeRsp::_internal_mutable_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   return _impl_.code_.Mutable( GetArena());
 }
-inline std::string* PROTOBUF_NULLABLE getVerifyResp::release_code() {
+inline std::string* PROTOBUF_NULLABLE GetVerifyCodeRsp::release_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:message.getVerifyResp.code)
+  // @@protoc_insertion_point(field_release:message.GetVerifyCodeRsp.code)
   if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
     return nullptr;
   }
@@ -719,7 +719,7 @@ inline std::string* PROTOBUF_NULLABLE getVerifyResp::release_code() {
   }
   return released;
 }
-inline void getVerifyResp::set_allocated_code(std::string* PROTOBUF_NULLABLE value) {
+inline void GetVerifyCodeRsp::set_allocated_code(std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
@@ -730,7 +730,7 @@ inline void getVerifyResp::set_allocated_code(std::string* PROTOBUF_NULLABLE val
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.code_.IsDefault()) {
     _impl_.code_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:message.getVerifyResp.code)
+  // @@protoc_insertion_point(field_set_allocated:message.GetVerifyCodeRsp.code)
 }
 
 #ifdef __GNUC__

@@ -22,60 +22,60 @@
 #include <grpcpp/ports_def.inc>
 namespace message {
 
-static const char* getVerifyService_method_names[] = {
-  "/message.getVerifyService/getVerifyCode",
+static const char* GetVerifyCodeService_method_names[] = {
+  "/message.GetVerifyCodeService/getVerifyCode",
 };
 
-std::unique_ptr< getVerifyService::Stub> getVerifyService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+std::unique_ptr< GetVerifyCodeService::Stub> GetVerifyCodeService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< getVerifyService::Stub> stub(new getVerifyService::Stub(channel, options));
+  std::unique_ptr< GetVerifyCodeService::Stub> stub(new GetVerifyCodeService::Stub(channel, options));
   return stub;
 }
 
-getVerifyService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_getVerifyCode_(getVerifyService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+GetVerifyCodeService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_getVerifyCode_(GetVerifyCodeService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status getVerifyService::Stub::getVerifyCode(::grpc::ClientContext* context, const ::message::getVerifyReq& request, ::message::getVerifyResp* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::message::getVerifyReq, ::message::getVerifyResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_getVerifyCode_, context, request, response);
+::grpc::Status GetVerifyCodeService::Stub::getVerifyCode(::grpc::ClientContext* context, const ::message::GetVerifyCodeReq& request, ::message::GetVerifyCodeRsp* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::message::GetVerifyCodeReq, ::message::GetVerifyCodeRsp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_getVerifyCode_, context, request, response);
 }
 
-void getVerifyService::Stub::async::getVerifyCode(::grpc::ClientContext* context, const ::message::getVerifyReq* request, ::message::getVerifyResp* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::message::getVerifyReq, ::message::getVerifyResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_getVerifyCode_, context, request, response, std::move(f));
+void GetVerifyCodeService::Stub::async::getVerifyCode(::grpc::ClientContext* context, const ::message::GetVerifyCodeReq* request, ::message::GetVerifyCodeRsp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::message::GetVerifyCodeReq, ::message::GetVerifyCodeRsp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_getVerifyCode_, context, request, response, std::move(f));
 }
 
-void getVerifyService::Stub::async::getVerifyCode(::grpc::ClientContext* context, const ::message::getVerifyReq* request, ::message::getVerifyResp* response, ::grpc::ClientUnaryReactor* reactor) {
+void GetVerifyCodeService::Stub::async::getVerifyCode(::grpc::ClientContext* context, const ::message::GetVerifyCodeReq* request, ::message::GetVerifyCodeRsp* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_getVerifyCode_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::message::getVerifyResp>* getVerifyService::Stub::PrepareAsyncgetVerifyCodeRaw(::grpc::ClientContext* context, const ::message::getVerifyReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::message::getVerifyResp, ::message::getVerifyReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_getVerifyCode_, context, request);
+::grpc::ClientAsyncResponseReader< ::message::GetVerifyCodeRsp>* GetVerifyCodeService::Stub::PrepareAsyncgetVerifyCodeRaw(::grpc::ClientContext* context, const ::message::GetVerifyCodeReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::message::GetVerifyCodeRsp, ::message::GetVerifyCodeReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_getVerifyCode_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::message::getVerifyResp>* getVerifyService::Stub::AsyncgetVerifyCodeRaw(::grpc::ClientContext* context, const ::message::getVerifyReq& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::message::GetVerifyCodeRsp>* GetVerifyCodeService::Stub::AsyncgetVerifyCodeRaw(::grpc::ClientContext* context, const ::message::GetVerifyCodeReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncgetVerifyCodeRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-getVerifyService::Service::Service() {
+GetVerifyCodeService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      getVerifyService_method_names[0],
+      GetVerifyCodeService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< getVerifyService::Service, ::message::getVerifyReq, ::message::getVerifyResp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](getVerifyService::Service* service,
+      new ::grpc::internal::RpcMethodHandler< GetVerifyCodeService::Service, ::message::GetVerifyCodeReq, ::message::GetVerifyCodeRsp, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GetVerifyCodeService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::message::getVerifyReq* req,
-             ::message::getVerifyResp* resp) {
+             const ::message::GetVerifyCodeReq* req,
+             ::message::GetVerifyCodeRsp* resp) {
                return service->getVerifyCode(ctx, req, resp);
              }, this)));
 }
 
-getVerifyService::Service::~Service() {
+GetVerifyCodeService::Service::~Service() {
 }
 
-::grpc::Status getVerifyService::Service::getVerifyCode(::grpc::ServerContext* context, const ::message::getVerifyReq* request, ::message::getVerifyResp* response) {
+::grpc::Status GetVerifyCodeService::Service::getVerifyCode(::grpc::ServerContext* context, const ::message::GetVerifyCodeReq* request, ::message::GetVerifyCodeRsp* response) {
   (void) context;
   (void) request;
   (void) response;

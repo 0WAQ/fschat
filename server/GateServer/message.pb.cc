@@ -26,7 +26,7 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace message {
 
-inline constexpr getVerifyResp::Impl_::Impl_(
+inline constexpr GetVerifyCodeRsp::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         email_(
@@ -38,26 +38,26 @@ inline constexpr getVerifyResp::Impl_::Impl_(
         error_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR getVerifyResp::getVerifyResp(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR GetVerifyCodeRsp::GetVerifyCodeRsp(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(getVerifyResp_class_data_.base()),
+    : ::google::protobuf::Message(GetVerifyCodeRsp_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct getVerifyRespDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR getVerifyRespDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~getVerifyRespDefaultTypeInternal() {}
+struct GetVerifyCodeRspDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetVerifyCodeRspDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetVerifyCodeRspDefaultTypeInternal() {}
   union {
-    getVerifyResp _instance;
+    GetVerifyCodeRsp _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 getVerifyRespDefaultTypeInternal _getVerifyResp_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetVerifyCodeRspDefaultTypeInternal _GetVerifyCodeRsp_default_instance_;
 
-inline constexpr getVerifyReq::Impl_::Impl_(
+inline constexpr GetVerifyCodeReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         email_(
@@ -65,24 +65,24 @@ inline constexpr getVerifyReq::Impl_::Impl_(
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-PROTOBUF_CONSTEXPR getVerifyReq::getVerifyReq(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR GetVerifyCodeReq::GetVerifyCodeReq(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(getVerifyReq_class_data_.base()),
+    : ::google::protobuf::Message(GetVerifyCodeReq_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct getVerifyReqDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR getVerifyReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~getVerifyReqDefaultTypeInternal() {}
+struct GetVerifyCodeReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetVerifyCodeReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetVerifyCodeReqDefaultTypeInternal() {}
   union {
-    getVerifyReq _instance;
+    GetVerifyCodeReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 getVerifyReqDefaultTypeInternal _getVerifyReq_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetVerifyCodeReqDefaultTypeInternal _GetVerifyCodeReq_default_instance_;
 }  // namespace message
 static constexpr const ::_pb::EnumDescriptor *PROTOBUF_NONNULL *PROTOBUF_NULLABLE
     file_level_enum_descriptors_message_2eproto = nullptr;
@@ -91,27 +91,27 @@ static constexpr const ::_pb::ServiceDescriptor *PROTOBUF_NONNULL *PROTOBUF_NULL
 const ::uint32_t
     TableStruct_message_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        PROTOBUF_FIELD_OFFSET(::message::getVerifyReq, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::message::getVerifyReq, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::message::GetVerifyCodeReq, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::message::GetVerifyCodeReq, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::message::getVerifyReq, _impl_.email_),
+        PROTOBUF_FIELD_OFFSET(::message::GetVerifyCodeReq, _impl_.email_),
         0,
-        PROTOBUF_FIELD_OFFSET(::message::getVerifyResp, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::message::getVerifyResp, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::message::GetVerifyCodeRsp, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::message::GetVerifyCodeRsp, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::message::getVerifyResp, _impl_.error_),
-        PROTOBUF_FIELD_OFFSET(::message::getVerifyResp, _impl_.email_),
-        PROTOBUF_FIELD_OFFSET(::message::getVerifyResp, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::message::GetVerifyCodeRsp, _impl_.error_),
+        PROTOBUF_FIELD_OFFSET(::message::GetVerifyCodeRsp, _impl_.email_),
+        PROTOBUF_FIELD_OFFSET(::message::GetVerifyCodeRsp, _impl_.code_),
         2,
         0,
         1,
@@ -119,27 +119,27 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 9, -1, sizeof(::message::getVerifyReq)},
-        {10, 21, -1, sizeof(::message::getVerifyResp)},
+        {0, 9, -1, sizeof(::message::GetVerifyCodeReq)},
+        {10, 21, -1, sizeof(::message::GetVerifyCodeRsp)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
-    &::message::_getVerifyReq_default_instance_._instance,
-    &::message::_getVerifyResp_default_instance_._instance,
+    &::message::_GetVerifyCodeReq_default_instance_._instance,
+    &::message::_GetVerifyCodeRsp_default_instance_._instance,
 };
 const char descriptor_table_protodef_message_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\rmessage.proto\022\007message\"\035\n\014getVerifyReq"
-    "\022\r\n\005email\030\001 \001(\t\";\n\rgetVerifyResp\022\r\n\005erro"
-    "r\030\001 \001(\005\022\r\n\005email\030\002 \001(\t\022\014\n\004code\030\003 \001(\t2T\n\020"
-    "getVerifyService\022@\n\rgetVerifyCode\022\025.mess"
-    "age.getVerifyReq\032\026.message.getVerifyResp"
-    "\"\000b\006proto3"
+    "\n\rmessage.proto\022\007message\"!\n\020GetVerifyCod"
+    "eReq\022\r\n\005email\030\001 \001(\t\">\n\020GetVerifyCodeRsp\022"
+    "\r\n\005error\030\001 \001(\005\022\r\n\005email\030\002 \001(\t\022\014\n\004code\030\003 "
+    "\001(\t2_\n\024GetVerifyCodeService\022G\n\rgetVerify"
+    "Code\022\031.message.GetVerifyCodeReq\032\031.messag"
+    "e.GetVerifyCodeRsp\"\000b\006proto3"
 };
 static ::absl::once_flag descriptor_table_message_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_message_2eproto = {
     false,
     false,
-    210,
+    228,
     descriptor_table_protodef_message_2eproto,
     "message.proto",
     &descriptor_table_message_2eproto_once,
@@ -155,95 +155,95 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_message_2eprot
 namespace message {
 // ===================================================================
 
-class getVerifyReq::_Internal {
+class GetVerifyCodeReq::_Internal {
  public:
   using HasBits =
-      decltype(std::declval<getVerifyReq>()._impl_._has_bits_);
+      decltype(std::declval<GetVerifyCodeReq>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(getVerifyReq, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(GetVerifyCodeReq, _impl_._has_bits_);
 };
 
-getVerifyReq::getVerifyReq(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+GetVerifyCodeReq::GetVerifyCodeReq(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, getVerifyReq_class_data_.base()) {
+    : ::google::protobuf::Message(arena, GetVerifyCodeReq_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:message.getVerifyReq)
+  // @@protoc_insertion_point(arena_constructor:message.GetVerifyCodeReq)
 }
-PROTOBUF_NDEBUG_INLINE getVerifyReq::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE GetVerifyCodeReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    const ::message::getVerifyReq& from_msg)
+    const ::message::GetVerifyCodeReq& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         email_(arena, from.email_) {}
 
-getVerifyReq::getVerifyReq(
+GetVerifyCodeReq::GetVerifyCodeReq(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const getVerifyReq& from)
+    const GetVerifyCodeReq& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, getVerifyReq_class_data_.base()) {
+    : ::google::protobuf::Message(arena, GetVerifyCodeReq_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  getVerifyReq* const _this = this;
+  GetVerifyCodeReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:message.getVerifyReq)
+  // @@protoc_insertion_point(copy_constructor:message.GetVerifyCodeReq)
 }
-PROTOBUF_NDEBUG_INLINE getVerifyReq::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE GetVerifyCodeReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         email_(arena) {}
 
-inline void getVerifyReq::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void GetVerifyCodeReq::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-getVerifyReq::~getVerifyReq() {
-  // @@protoc_insertion_point(destructor:message.getVerifyReq)
+GetVerifyCodeReq::~GetVerifyCodeReq() {
+  // @@protoc_insertion_point(destructor:message.GetVerifyCodeReq)
   SharedDtor(*this);
 }
-inline void getVerifyReq::SharedDtor(MessageLite& self) {
-  getVerifyReq& this_ = static_cast<getVerifyReq&>(self);
+inline void GetVerifyCodeReq::SharedDtor(MessageLite& self) {
+  GetVerifyCodeReq& this_ = static_cast<GetVerifyCodeReq&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.email_.Destroy();
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL getVerifyReq::PlacementNew_(
+inline void* PROTOBUF_NONNULL GetVerifyCodeReq::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) getVerifyReq(arena);
+  return ::new (mem) GetVerifyCodeReq(arena);
 }
-constexpr auto getVerifyReq::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(getVerifyReq),
-                                            alignof(getVerifyReq));
+constexpr auto GetVerifyCodeReq::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(GetVerifyCodeReq),
+                                            alignof(GetVerifyCodeReq));
 }
-constexpr auto getVerifyReq::InternalGenerateClassData_() {
+constexpr auto GetVerifyCodeReq::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_getVerifyReq_default_instance_._instance,
+          &_GetVerifyCodeReq_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &getVerifyReq::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<getVerifyReq>(),
+          &GetVerifyCodeReq::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<GetVerifyCodeReq>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &getVerifyReq::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<getVerifyReq>(), &getVerifyReq::ByteSizeLong,
-              &getVerifyReq::_InternalSerialize,
+          &GetVerifyCodeReq::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<GetVerifyCodeReq>(), &GetVerifyCodeReq::ByteSizeLong,
+              &GetVerifyCodeReq::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(getVerifyReq, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(GetVerifyCodeReq, _impl_._cached_size_),
           false,
       },
-      &getVerifyReq::kDescriptorMethods,
+      &GetVerifyCodeReq::kDescriptorMethods,
       &descriptor_table_message_2eproto,
       nullptr,  // tracker
   };
@@ -251,19 +251,19 @@ constexpr auto getVerifyReq::InternalGenerateClassData_() {
 
 PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const ::google::protobuf::internal::ClassDataFull
-        getVerifyReq_class_data_ =
-            getVerifyReq::InternalGenerateClassData_();
+        GetVerifyCodeReq_class_data_ =
+            GetVerifyCodeReq::InternalGenerateClassData_();
 
-const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL getVerifyReq::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&getVerifyReq_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(getVerifyReq_class_data_.tc_table);
-  return getVerifyReq_class_data_.base();
+const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetVerifyCodeReq::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&GetVerifyCodeReq_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(GetVerifyCodeReq_class_data_.tc_table);
+  return GetVerifyCodeReq_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 34, 2>
-getVerifyReq::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 38, 2>
+GetVerifyCodeReq::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(getVerifyReq, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(GetVerifyCodeReq, _impl_._has_bits_),
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -272,32 +272,32 @@ getVerifyReq::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    getVerifyReq_class_data_.base(),
+    GetVerifyCodeReq_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::message::getVerifyReq>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::message::GetVerifyCodeReq>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // string email = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(getVerifyReq, _impl_.email_)}},
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(GetVerifyCodeReq, _impl_.email_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string email = 1;
-    {PROTOBUF_FIELD_OFFSET(getVerifyReq, _impl_.email_), _Internal::kHasBitsOffset + 0, 0,
+    {PROTOBUF_FIELD_OFFSET(GetVerifyCodeReq, _impl_.email_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\24\5\0\0\0\0\0\0"
-    "message.getVerifyReq"
+    "\30\5\0\0\0\0\0\0"
+    "message.GetVerifyCodeReq"
     "email"
   }},
 };
-PROTOBUF_NOINLINE void getVerifyReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:message.getVerifyReq)
+PROTOBUF_NOINLINE void GetVerifyCodeReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:message.GetVerifyCodeReq)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -312,17 +312,17 @@ PROTOBUF_NOINLINE void getVerifyReq::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL getVerifyReq::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL GetVerifyCodeReq::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const getVerifyReq& this_ = static_cast<const getVerifyReq&>(base);
+  const GetVerifyCodeReq& this_ = static_cast<const GetVerifyCodeReq&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL getVerifyReq::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL GetVerifyCodeReq::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const getVerifyReq& this_ = *this;
+  const GetVerifyCodeReq& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(serialize_to_array_start:message.getVerifyReq)
+  // @@protoc_insertion_point(serialize_to_array_start:message.GetVerifyCodeReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -331,7 +331,7 @@ PROTOBUF_NOINLINE void getVerifyReq::Clear() {
     if (!this_._internal_email().empty()) {
       const std::string& _s = this_._internal_email();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "message.getVerifyReq.email");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "message.GetVerifyCodeReq.email");
       target = stream->WriteStringMaybeAliased(1, _s, target);
     }
   }
@@ -341,18 +341,18 @@ PROTOBUF_NOINLINE void getVerifyReq::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:message.getVerifyReq)
+  // @@protoc_insertion_point(serialize_to_array_end:message.GetVerifyCodeReq)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t getVerifyReq::ByteSizeLong(const MessageLite& base) {
-  const getVerifyReq& this_ = static_cast<const getVerifyReq&>(base);
+::size_t GetVerifyCodeReq::ByteSizeLong(const MessageLite& base) {
+  const GetVerifyCodeReq& this_ = static_cast<const GetVerifyCodeReq&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t getVerifyReq::ByteSizeLong() const {
-  const getVerifyReq& this_ = *this;
+::size_t GetVerifyCodeReq::ByteSizeLong() const {
+  const GetVerifyCodeReq& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:message.getVerifyReq)
+  // @@protoc_insertion_point(message_byte_size_start:message.GetVerifyCodeReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -373,10 +373,10 @@ PROTOBUF_NOINLINE void getVerifyReq::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void getVerifyReq::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<getVerifyReq*>(&to_msg);
-  auto& from = static_cast<const getVerifyReq&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:message.getVerifyReq)
+void GetVerifyCodeReq::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetVerifyCodeReq*>(&to_msg);
+  auto& from = static_cast<const GetVerifyCodeReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:message.GetVerifyCodeReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -395,15 +395,15 @@ void getVerifyReq::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::go
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void getVerifyReq::CopyFrom(const getVerifyReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:message.getVerifyReq)
+void GetVerifyCodeReq::CopyFrom(const GetVerifyCodeReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:message.GetVerifyCodeReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void getVerifyReq::InternalSwap(getVerifyReq* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void GetVerifyCodeReq::InternalSwap(GetVerifyCodeReq* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -412,71 +412,71 @@ void getVerifyReq::InternalSwap(getVerifyReq* PROTOBUF_RESTRICT PROTOBUF_NONNULL
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.email_, &other->_impl_.email_, arena);
 }
 
-::google::protobuf::Metadata getVerifyReq::GetMetadata() const {
+::google::protobuf::Metadata GetVerifyCodeReq::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class getVerifyResp::_Internal {
+class GetVerifyCodeRsp::_Internal {
  public:
   using HasBits =
-      decltype(std::declval<getVerifyResp>()._impl_._has_bits_);
+      decltype(std::declval<GetVerifyCodeRsp>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_._has_bits_);
 };
 
-getVerifyResp::getVerifyResp(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+GetVerifyCodeRsp::GetVerifyCodeRsp(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, getVerifyResp_class_data_.base()) {
+    : ::google::protobuf::Message(arena, GetVerifyCodeRsp_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:message.getVerifyResp)
+  // @@protoc_insertion_point(arena_constructor:message.GetVerifyCodeRsp)
 }
-PROTOBUF_NDEBUG_INLINE getVerifyResp::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE GetVerifyCodeRsp::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    const ::message::getVerifyResp& from_msg)
+    const ::message::GetVerifyCodeRsp& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         email_(arena, from.email_),
         code_(arena, from.code_) {}
 
-getVerifyResp::getVerifyResp(
+GetVerifyCodeRsp::GetVerifyCodeRsp(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const getVerifyResp& from)
+    const GetVerifyCodeRsp& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, getVerifyResp_class_data_.base()) {
+    : ::google::protobuf::Message(arena, GetVerifyCodeRsp_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  getVerifyResp* const _this = this;
+  GetVerifyCodeRsp* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   _impl_.error_ = from._impl_.error_;
 
-  // @@protoc_insertion_point(copy_constructor:message.getVerifyResp)
+  // @@protoc_insertion_point(copy_constructor:message.GetVerifyCodeRsp)
 }
-PROTOBUF_NDEBUG_INLINE getVerifyResp::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE GetVerifyCodeRsp::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         email_(arena),
         code_(arena) {}
 
-inline void getVerifyResp::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void GetVerifyCodeRsp::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.error_ = {};
 }
-getVerifyResp::~getVerifyResp() {
-  // @@protoc_insertion_point(destructor:message.getVerifyResp)
+GetVerifyCodeRsp::~GetVerifyCodeRsp() {
+  // @@protoc_insertion_point(destructor:message.GetVerifyCodeRsp)
   SharedDtor(*this);
 }
-inline void getVerifyResp::SharedDtor(MessageLite& self) {
-  getVerifyResp& this_ = static_cast<getVerifyResp&>(self);
+inline void GetVerifyCodeRsp::SharedDtor(MessageLite& self) {
+  GetVerifyCodeRsp& this_ = static_cast<GetVerifyCodeRsp&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.email_.Destroy();
@@ -484,33 +484,33 @@ inline void getVerifyResp::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL getVerifyResp::PlacementNew_(
+inline void* PROTOBUF_NONNULL GetVerifyCodeRsp::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) getVerifyResp(arena);
+  return ::new (mem) GetVerifyCodeRsp(arena);
 }
-constexpr auto getVerifyResp::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(getVerifyResp),
-                                            alignof(getVerifyResp));
+constexpr auto GetVerifyCodeRsp::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(GetVerifyCodeRsp),
+                                            alignof(GetVerifyCodeRsp));
 }
-constexpr auto getVerifyResp::InternalGenerateClassData_() {
+constexpr auto GetVerifyCodeRsp::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_getVerifyResp_default_instance_._instance,
+          &_GetVerifyCodeRsp_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &getVerifyResp::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<getVerifyResp>(),
+          &GetVerifyCodeRsp::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<GetVerifyCodeRsp>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &getVerifyResp::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<getVerifyResp>(), &getVerifyResp::ByteSizeLong,
-              &getVerifyResp::_InternalSerialize,
+          &GetVerifyCodeRsp::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<GetVerifyCodeRsp>(), &GetVerifyCodeRsp::ByteSizeLong,
+              &GetVerifyCodeRsp::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_._cached_size_),
           false,
       },
-      &getVerifyResp::kDescriptorMethods,
+      &GetVerifyCodeRsp::kDescriptorMethods,
       &descriptor_table_message_2eproto,
       nullptr,  // tracker
   };
@@ -518,19 +518,19 @@ constexpr auto getVerifyResp::InternalGenerateClassData_() {
 
 PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const ::google::protobuf::internal::ClassDataFull
-        getVerifyResp_class_data_ =
-            getVerifyResp::InternalGenerateClassData_();
+        GetVerifyCodeRsp_class_data_ =
+            GetVerifyCodeRsp::InternalGenerateClassData_();
 
-const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL getVerifyResp::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&getVerifyResp_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(getVerifyResp_class_data_.tc_table);
-  return getVerifyResp_class_data_.base();
+const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetVerifyCodeRsp::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&GetVerifyCodeRsp_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(GetVerifyCodeRsp_class_data_.tc_table);
+  return GetVerifyCodeRsp_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 39, 2>
-getVerifyResp::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 42, 2>
+GetVerifyCodeRsp::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_._has_bits_),
     0, // no _extensions_
     3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -539,46 +539,46 @@ getVerifyResp::_table_ = {
     3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    getVerifyResp_class_data_.base(),
+    GetVerifyCodeRsp_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::message::getVerifyResp>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::message::GetVerifyCodeRsp>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // int32 error = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(getVerifyResp, _impl_.error_), 2>(),
-     {8, 2, 0, PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_.error_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetVerifyCodeRsp, _impl_.error_), 2>(),
+     {8, 2, 0, PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_.error_)}},
     // string email = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_.email_)}},
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_.email_)}},
     // string code = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 1, 0, PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_.code_)}},
+     {26, 1, 0, PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_.code_)}},
   }}, {{
     65535, 65535
   }}, {{
     // int32 error = 1;
-    {PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_.error_), _Internal::kHasBitsOffset + 2, 0,
+    {PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_.error_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
     // string email = 2;
-    {PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_.email_), _Internal::kHasBitsOffset + 0, 0,
+    {PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_.email_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string code = 3;
-    {PROTOBUF_FIELD_OFFSET(getVerifyResp, _impl_.code_), _Internal::kHasBitsOffset + 1, 0,
+    {PROTOBUF_FIELD_OFFSET(GetVerifyCodeRsp, _impl_.code_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\25\0\5\4\0\0\0\0"
-    "message.getVerifyResp"
+    "\30\0\5\4\0\0\0\0"
+    "message.GetVerifyCodeRsp"
     "email"
     "code"
   }},
 };
-PROTOBUF_NOINLINE void getVerifyResp::Clear() {
-// @@protoc_insertion_point(message_clear_start:message.getVerifyResp)
+PROTOBUF_NOINLINE void GetVerifyCodeRsp::Clear() {
+// @@protoc_insertion_point(message_clear_start:message.GetVerifyCodeRsp)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -599,17 +599,17 @@ PROTOBUF_NOINLINE void getVerifyResp::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL getVerifyResp::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL GetVerifyCodeRsp::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const getVerifyResp& this_ = static_cast<const getVerifyResp&>(base);
+  const GetVerifyCodeRsp& this_ = static_cast<const GetVerifyCodeRsp&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL getVerifyResp::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL GetVerifyCodeRsp::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const getVerifyResp& this_ = *this;
+  const GetVerifyCodeRsp& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(serialize_to_array_start:message.getVerifyResp)
+  // @@protoc_insertion_point(serialize_to_array_start:message.GetVerifyCodeRsp)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -627,7 +627,7 @@ PROTOBUF_NOINLINE void getVerifyResp::Clear() {
     if (!this_._internal_email().empty()) {
       const std::string& _s = this_._internal_email();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "message.getVerifyResp.email");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "message.GetVerifyCodeRsp.email");
       target = stream->WriteStringMaybeAliased(2, _s, target);
     }
   }
@@ -637,7 +637,7 @@ PROTOBUF_NOINLINE void getVerifyResp::Clear() {
     if (!this_._internal_code().empty()) {
       const std::string& _s = this_._internal_code();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "message.getVerifyResp.code");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "message.GetVerifyCodeRsp.code");
       target = stream->WriteStringMaybeAliased(3, _s, target);
     }
   }
@@ -647,18 +647,18 @@ PROTOBUF_NOINLINE void getVerifyResp::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:message.getVerifyResp)
+  // @@protoc_insertion_point(serialize_to_array_end:message.GetVerifyCodeRsp)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t getVerifyResp::ByteSizeLong(const MessageLite& base) {
-  const getVerifyResp& this_ = static_cast<const getVerifyResp&>(base);
+::size_t GetVerifyCodeRsp::ByteSizeLong(const MessageLite& base) {
+  const GetVerifyCodeRsp& this_ = static_cast<const GetVerifyCodeRsp&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t getVerifyResp::ByteSizeLong() const {
-  const getVerifyResp& this_ = *this;
+::size_t GetVerifyCodeRsp::ByteSizeLong() const {
+  const GetVerifyCodeRsp& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:message.getVerifyResp)
+  // @@protoc_insertion_point(message_byte_size_start:message.GetVerifyCodeRsp)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -694,10 +694,10 @@ PROTOBUF_NOINLINE void getVerifyResp::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void getVerifyResp::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<getVerifyResp*>(&to_msg);
-  auto& from = static_cast<const getVerifyResp&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:message.getVerifyResp)
+void GetVerifyCodeRsp::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<GetVerifyCodeRsp*>(&to_msg);
+  auto& from = static_cast<const GetVerifyCodeRsp&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:message.GetVerifyCodeRsp)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -732,15 +732,15 @@ void getVerifyResp::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::g
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void getVerifyResp::CopyFrom(const getVerifyResp& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:message.getVerifyResp)
+void GetVerifyCodeRsp::CopyFrom(const GetVerifyCodeRsp& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:message.GetVerifyCodeRsp)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void getVerifyResp::InternalSwap(getVerifyResp* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void GetVerifyCodeRsp::InternalSwap(GetVerifyCodeRsp* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -751,7 +751,7 @@ void getVerifyResp::InternalSwap(getVerifyResp* PROTOBUF_RESTRICT PROTOBUF_NONNU
   swap(_impl_.error_, other->_impl_.error_);
 }
 
-::google::protobuf::Metadata getVerifyResp::GetMetadata() const {
+::google::protobuf::Metadata GetVerifyCodeRsp::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
