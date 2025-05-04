@@ -12,6 +12,7 @@ add_executable(${PROJECT_NAME}
 		"message.proto"
 		"GetVerifyCodeRpcClient.h" "GetVerifyCodeRpcClient.cpp"
 		"ConfigManager.h" "ConfigManager.cpp"
+		"AsioIOContextPool.h" "AsioIOContextPool.cpp"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

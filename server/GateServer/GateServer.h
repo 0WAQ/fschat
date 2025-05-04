@@ -7,6 +7,9 @@ class GateServer : public std::enable_shared_from_this<GateServer>
 {
 public:
 
+	/**
+	 * @brief 初始化 GateServer 和 一个 Acceptor
+	 */
 	GateServer(boost::asio::io_context &ctx, unsigned short port);
 	
 	void start();
@@ -16,7 +19,6 @@ public:
 private:
 	tcp::acceptor _acceptor;
 	net::io_context &_ctx;
-	tcp::socket _socket;
 };
 
 #endif // _GATESERVER_H_

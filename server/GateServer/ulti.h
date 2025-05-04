@@ -14,7 +14,11 @@
 
 #include <iostream>
 #include <memory>
+#include <thread>
+#include <condition_variable>
 #include <functional>
+#include <vector>
+#include <queue>
 #include <map>
 #include <unordered_map>
 #include <cassert>
