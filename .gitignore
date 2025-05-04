@@ -10,3 +10,5 @@ client/out
 server/out
 
 server/CMakeSettings.json
+
+server/VerifyCodeServer/node_modules
