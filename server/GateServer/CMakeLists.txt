@@ -19,12 +19,14 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 	${Boost_INCLUDES}
 	${jsoncpp_INCLUDE_DIR}
 	${gRPC_INCLUDE_DIR}
+	${HIREDIS_INCLUDE_DIR}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
 	${Boost_LIBRARIES}
 	${jsoncpp_LIBRARY_DIR}/libjsoncpp.a
 	gRPC::grpc++
+	${HIREDIS_LIBRARY_DIR}/libhiredis.a
 )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD

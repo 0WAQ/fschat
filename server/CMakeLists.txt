@@ -44,5 +44,11 @@ set(gRPC_DIR "${gRPC_ROOT}/lib/cmake/grpc")
 find_package(gRPC CONFIG REQUIRED)
 
 
+# 搜索 hiredis
+set(HIREDIS_ROOT "${THIRD_PARTY}/hiredis/${BUILD_TYPE_LOWER}")
+set(HIREDIS_INCLUDE_DIR "${HIREDIS_ROOT}/include")
+set(HIREDIS_LIBRARY_DIR "${HIREDIS_ROOT}/lib")
+
+
 # 添加子模块
 add_subdirectory(GateServer)

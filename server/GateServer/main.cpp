@@ -1,6 +1,7 @@
 ﻿#include <json/json.h>
 #include <json/value.h>
 #include <json/reader.h>
+#include <hiredis/hiredis.h>
 
 #include "ulti.h"
 #include "ConfigManager.h"
