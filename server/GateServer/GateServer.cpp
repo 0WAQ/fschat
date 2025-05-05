@@ -10,9 +10,9 @@ GateServer::GateServer(boost::asio::io_context& ctx, unsigned short port)
 
 void GateServer::start()
 {
-	// 创建一个 connection, 并为其分配一个 io_context
+	// 从池中取一个 io_context, One connection Per thread
 	auto& io_context = AsioIOContextPool::GetInstance().getIOContext();
-	std::shared_ptr<HttpConnection> conn = std::make_shared<HttpConnection>(io_context);
+	std::shared_ptr<HttpConnection> conn = std::make_shared<HttpConnection>(io_context); // TODO: 可以封装一个 http 连接池
 
 	// 开始监听
 	auto self = shared_from_this();

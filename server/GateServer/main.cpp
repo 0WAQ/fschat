@@ -59,9 +59,9 @@ int main()
 			}
 
 			auto email = request_json["email"].asString();
-			GetVerifyCodeRsp response = GetVerifyCodeRpcClient::GetInstance().getVerifyCode(email);
+			GetVerifyCodeRsp response = GetVerifyCodeRpcClient::GetInstance().getVerifyCode(email);	// 发起 rpc 调用
 			response_json["error"] = response.error();
-			response_json["email"] = request_json["email"]; // TODO: 待删除?
+			response_json["email"] = request_json["email"]; // TODO: 应替换为 response.email()
 			beast::ostream(conn->response().body()) << response_json.toStyledString();
 
 			// TODO: 打印日志
