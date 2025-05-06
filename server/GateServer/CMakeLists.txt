@@ -13,6 +13,7 @@ add_executable(${PROJECT_NAME}
 		"GetVerifyCodeRpcClient.h" "GetVerifyCodeRpcClient.cpp"
 		"ConfigManager.h" "ConfigManager.cpp"
 		"AsioIOContextPool.h" "AsioIOContextPool.cpp"
+		"RedisManager.h" "RedisManager.cpp"
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

@@ -2,9 +2,11 @@
 #include <json/value.h>
 #include <json/reader.h>
 #include <hiredis/hiredis.h>
+#include <cassert>
 
 #include "ulti.h"
 #include "ConfigManager.h"
+#include "RedisManager.h"
 #include "GateServer.h"
 #include "LogicSystem.h"
 #include "HttpConnection.h"
