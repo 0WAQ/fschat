@@ -4,26 +4,12 @@
 #include <boost/beast.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/asio.hpp>
-#include <boost/filesystem.hpp>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/ini_parser.hpp>
 
 #include <json/json.h>
 #include <json/value.h>
 #include <json/reader.h>
 
-#include <iostream>
-#include <memory>
-#include <thread>
-#include <condition_variable>
-#include <functional>
-#include <vector>
-#include <queue>
-#include <map>
-#include <unordered_map>
-#include <cassert>
-
-#include "singleton.h"
+#include <iostream>	// TODO: 添加日志库后删除
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -37,6 +23,7 @@ using HttpResponse = http::response<http::dynamic_body>;
 
 ////////////////////////////////////////////////////////////
 
+// TODO: 更改位置
 enum ErrorCode {
 	EC_SUCCESS = 0,
 	EC_VALID_JSON = 1001,

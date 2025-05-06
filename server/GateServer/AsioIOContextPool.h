@@ -1,7 +1,13 @@
 #ifndef _ASIOIOCONTEXTPOOL_H_
 #define _ASIOIOCONTEXTPOOL_H_
 
+#include <memory>
+#include <atomic>
+#include <thread>
+#include <vector>
+
 #include "ulti.h"
+#include "singleton.h"
 
 /**
  * @brief ·â×°Ïß³Ì³Ø TODO: ?

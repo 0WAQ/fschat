@@ -1,7 +1,14 @@
 #ifndef _CONFIGMANAGER_H_
 #define _CONFIGMANAGER_H_
 
+#include <boost/filesystem.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/ini_parser.hpp>
+
+#include <unordered_map>
+
 #include "ulti.h"
+#include "singleton.h"
 
 /**
  * @brief 配置文件节信息

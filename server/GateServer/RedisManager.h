@@ -2,7 +2,11 @@
 #define _REDISMANAGER_H_
 
 #include <hiredis/hiredis.h>
+
+#include <memory>
+
 #include "ulti.h"
+#include "singleton.h"
 
 /**
  * @brief redis π‹¿Ì¿‡

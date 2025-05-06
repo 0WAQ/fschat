@@ -1,9 +1,10 @@
 #ifndef _HTTPCONNECTION_H_
 #define _HTTPCONNECTION_H_
 
-#include "ulti.h"
-
 #include <chrono>
+#include <memory>
+
+#include "ulti.h"
 
 class HttpConnection : public std::enable_shared_from_this<HttpConnection>
 {

@@ -33,11 +33,7 @@ void GateServer::start()
 				self->start();
 			}
 			catch (std::exception& e) {
-			
+				// TODO: exception?
 			}
 		});
-}
-
-GateServer::~GateServer()
-{
 }

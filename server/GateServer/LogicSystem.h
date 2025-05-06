@@ -1,7 +1,10 @@
 #ifndef _LOGICSYSTEM_H_
 #define _LOGICSYSTEM_H_
 
+#include <unordered_map>
+
 #include "ulti.h"
+#include "singleton.h"
 
 /**
  * @brief 用于注册和获取 http 请求的执行函数

@@ -3,7 +3,12 @@
 
 #include <grpcpp/grpcpp.h>
 
+#include <condition_variable>
+#include <memory>
+#include <queue>
+
 #include "ulti.h"
+#include "singleton.h"
 #include "message.grpc.pb.h"
 
 using grpc::Channel;
