@@ -12,4 +12,4 @@ server/out
 client/CMakeLists.txt.user
 
 server/CMakeSettings.json
-server/VerifyCodeServer/node_modules
+# server/VerifyCodeServer/node_modules
