@@ -7,9 +7,9 @@
 #include <memory>
 #include <queue>
 
-#include "ulti.h"
-#include "singleton.h"
-#include "message.grpc.pb.h"
+#include "base/ulti.h"
+#include "base/singleton.h"
+#include "rpc/message.grpc.pb.h"
 
 using grpc::Channel;
 using grpc::Status;

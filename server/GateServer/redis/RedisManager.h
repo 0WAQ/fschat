@@ -5,8 +5,8 @@
 
 #include <memory>
 
-#include "ulti.h"
-#include "singleton.h"
+#include "base/ulti.h"
+#include "base/singleton.h"
 #include "RedisConnectionPool.h"
 
 /**

@@ -1,5 +1,5 @@
 #include "RedisManager.h"
-#include "ConfigManager.h"
+#include "base/ConfigManager.h"
 
 // TODO: ´ıÀ©Õ¹Îª³Ø
 RedisManager::RedisManager()

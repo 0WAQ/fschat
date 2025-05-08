@@ -1,5 +1,5 @@
 #include "GetVerifyCodeRpcClient.h"
-#include "ConfigManager.h"
+#include "base/ConfigManager.h"
 
 GetVerifyCodeRpcClient::GetVerifyCodeRpcClient()
 {

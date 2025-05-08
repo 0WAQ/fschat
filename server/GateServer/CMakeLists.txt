@@ -1,22 +1,25 @@
 ﻿project(GateServer)
 
 add_executable(${PROJECT_NAME}
+		"base/singleton.h"
+		"base/noncopyable.h"
+		"base/ulti.h"					"base/ulti.cpp"
+		"base/ConfigManager.h"			"base/ConfigManager.cpp"
+
+		"redis/RedisManager.h"			"redis/RedisManager.cpp"
+		"redis/RedisConnectionPool.h"	"redis/RedisConnectionPool.cpp"
+
+		"rpc/message.pb.h"				"rpc/message.pb.cc"
+		"rpc/message.grpc.pb.h"			"rpc/message.grpc.pb.cc"
+		"rpc/message.proto"
+
+		"AsioIOContextPool.h"			"AsioIOContextPool.cpp"
+		"GateServer.h"					"GateServer.cpp"
+		"GetVerifyCodeRpcClient.h"		"GetVerifyCodeRpcClient.cpp"
+		"HttpConnection.h"				"HttpConnection.cpp"
+		"LogicSystem.h"					"LogicSystem.cpp"
+
 		"main.cpp"
-		"singleton.h"
-		"noncopyable.h"
-		"ulti.h" "ulti.cpp"
-		"GateServer.h" "GateServer.cpp"
-		"HttpConnection.h" "HttpConnection.cpp"
-		"LogicSystem.h" "LogicSystem.cpp"
-		"message.pb.h" "message.pb.cc"
-		"message.grpc.pb.h" "message.grpc.pb.cc"
-		"message.proto"
-		"GetVerifyCodeRpcClient.h" "GetVerifyCodeRpcClient.cpp"
-		"ConfigManager.h" "ConfigManager.cpp"
-		"AsioIOContextPool.h" "AsioIOContextPool.cpp"
-		"redis/RedisManager.h" "redis/RedisManager.cpp"
-		"redis/RedisConnectionPool.h" "redis/RedisConnectionPool.cpp"
-		
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
