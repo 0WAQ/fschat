@@ -1,6 +1,8 @@
 #ifndef _ULTI_H_
 #define _ULTI_H_
 
+#include <spdlog/common.h>
+
 #include <boost/beast.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/asio.hpp>

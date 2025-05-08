@@ -24,6 +24,7 @@ add_executable(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME} PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}
+	${spdlog_INCLUDE_DIR}
 	${Boost_INCLUDES}
 	${jsoncpp_INCLUDE_DIR}
 	${gRPC_INCLUDE_DIR}
@@ -31,6 +32,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
+	spdlog::spdlog
 	${Boost_LIBRARIES}
 	${jsoncpp_LIBRARY_DIR}/libjsoncpp.a
 	gRPC::grpc++

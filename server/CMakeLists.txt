@@ -11,6 +11,12 @@ endif()
 set(THIRD_PARTY "/home/bwb/pkgs")
 string(TOLOWER "${CMAKE_BUILD_TYPE}" BUILD_TYPE_LOWER)
 
+# 搜索 spdlog
+set(spdlog_ROOT "${THIRD_PARTY}/spdlog")
+set(spdlog_INCLUDE_DIR "${spdlog_ROOT}/include")
+set(spdlog_LIBRARY_DIR "${spdlog_ROOT}/lib")
+set(spdlog_DIR "${spdlog_ROOT}/lib/cmake/spdlog")
+find_package(spdlog REQUIRED)
 
 # 搜索 boost
 set(Boost_ROOT "${THIRD_PARTY}/boost/${BUILD_TYPE_LOWER}")
