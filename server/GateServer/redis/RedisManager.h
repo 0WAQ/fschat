@@ -7,6 +7,7 @@
 
 #include "ulti.h"
 #include "singleton.h"
+#include "RedisConnectionPool.h"
 
 /**
  * @brief redis 管理类
@@ -14,27 +15,12 @@
 class RedisManager : public Singleton<RedisManager>
 {
 public:
-	
-	/**
-	 * @brief 自定义删除器
-	 */
-	class deletor
-	{
-	public:
-		void operator() (redisReply* reply) {
-			freeReplyObject(reply);
-		}
-	};
-
 	friend class Singleton<RedisManager>;
-	using Reply = std::unique_ptr<redisReply, deletor>;
 
 private:
 	RedisManager();
 	
 public:
-
-	bool connect(const std::string& host, int port);
 	bool get(const std::string& key, std::string& value);
 	bool set(const std::string& key, const std::string& value);
 	bool auth(const std::string& passwd);
@@ -50,7 +36,7 @@ public:
 	void close();
 
 private:
-	redisContext* _connect;
+	std::unique_ptr<RedisConnectionPool> _pool;
 };
 
 #endif // _REDISMANAGER_H_

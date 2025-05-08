@@ -3,6 +3,7 @@
 add_executable(${PROJECT_NAME}
 		"main.cpp"
 		"singleton.h"
+		"noncopyable.h"
 		"ulti.h" "ulti.cpp"
 		"GateServer.h" "GateServer.cpp"
 		"HttpConnection.h" "HttpConnection.cpp"
@@ -13,10 +14,13 @@ add_executable(${PROJECT_NAME}
 		"GetVerifyCodeRpcClient.h" "GetVerifyCodeRpcClient.cpp"
 		"ConfigManager.h" "ConfigManager.cpp"
 		"AsioIOContextPool.h" "AsioIOContextPool.cpp"
-		"RedisManager.h" "RedisManager.cpp"
+		"redis/RedisManager.h" "redis/RedisManager.cpp"
+		"redis/RedisConnectionPool.h" "redis/RedisConnectionPool.cpp"
+		
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
+	${CMAKE_CURRENT_SOURCE_DIR}
 	${Boost_INCLUDES}
 	${jsoncpp_INCLUDE_DIR}
 	${gRPC_INCLUDE_DIR}

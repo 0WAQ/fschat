@@ -1,29 +1,25 @@
 #include "RedisManager.h"
+#include "ConfigManager.h"
 
 // TODO: 待扩展为池
 RedisManager::RedisManager()
 {
-}
-
-bool RedisManager::connect(const std::string& host, int port)
-{
-	_connect = redisConnect(host.c_str(), port);
-	if (_connect == nullptr) {
-		// TODO: 打印日志
-		return false;
-	}
-
-	if (_connect && _connect->err) {
-		// TODO: 打印日志
-		std::cout << "connect error: " << _connect->errstr << std::endl;
-		return false;
-	}
-	return true;
+	auto& config = ConfigManager::GetInstance();
+	auto host = config["Redis"]["Host"];
+	auto port = config["Redis"]["Port"];
+	auto pwd = config["Redis"]["Passwd"];
+	// TODO: pool_size 读配置文件
+	_pool.reset(new RedisConnectionPool(5, host, std::atoi(port.c_str()), pwd));
 }
 
 bool RedisManager::get(const std::string& key, std::string& value)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "GET %s", key.c_str())  };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "GET %s", key.c_str())  };
 	if (reply == nullptr) {
 		// TODO: 打印日志
 		std::cout << "[ Get " << key << " ] failed" << std::endl;
@@ -44,7 +40,12 @@ bool RedisManager::get(const std::string& key, std::string& value)
 
 bool RedisManager::set(const std::string& key, const std::string& value)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "SET %s %s", key.c_str(), value.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "SET %s %s", key.c_str(), value.c_str()) };
 
 	if (reply == nullptr) {
 		// TODO: 打印日志
@@ -67,21 +68,31 @@ bool RedisManager::set(const std::string& key, const std::string& value)
 
 bool RedisManager::auth(const std::string& passwd)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "AUTH %s", passwd.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "AUTH %s", passwd.c_str()) };
 	if (reply->type == REDIS_REPLY_ERROR) {
 		// TODO: 打印日志
-		std::cout << "认证失败!" << std::endl;
+		// std::cout << "认证失败!" << std::endl;
 		return false;
 	}
 
 	// TODO: 打印日志
-	std::cout << "认证成功" << std::endl;
+	// std::cout << "认证成功" << std::endl;
 	return true;
 }
 
 bool RedisManager::lpush(const std::string& key, const std::string& value)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "LPUSH %s %s", key.c_str(), value.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "LPUSH %s %s", key.c_str(), value.c_str()) };
 	if (reply == nullptr) {
 		// TODO: 打印日志
 		std::cout << "Execute command [ LPUSH " << key << "  " << value << " ] failure ! " << std::endl;
@@ -101,7 +112,12 @@ bool RedisManager::lpush(const std::string& key, const std::string& value)
 
 bool RedisManager::lpop(const std::string& key, std::string& value)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "LPOP %s", key.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "LPOP %s", key.c_str()) };
 	if (reply == nullptr || reply->type == REDIS_REPLY_NIL) {
 		// TODO: 打印日志
 		std::cout << "Execute command [ LPOP " << key << "  " << value << " ] failure ! " << std::endl;
@@ -117,7 +133,12 @@ bool RedisManager::lpop(const std::string& key, std::string& value)
 
 bool RedisManager::rpush(const std::string& key, const std::string& value)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "RPUSH %s %s", key.c_str(), value.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "RPUSH %s %s", key.c_str(), value.c_str()) };
 	if (reply == nullptr) {
 		// TODO: 打印日志
 		std::cout << "Execute command [ RPUSH " << key << "  " << value << " ] failure ! " << std::endl;
@@ -137,7 +158,12 @@ bool RedisManager::rpush(const std::string& key, const std::string& value)
 
 bool RedisManager::rpop(const std::string& key, std::string& value)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "RPOP %s", key.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "RPOP %s", key.c_str()) };
 	if (reply == nullptr || reply->type == REDIS_REPLY_NIL) {
 		// TODO: 打印日志
 		std::cout << "Execute command [ RPOP " << key << "  " << value << " ] failure ! " << std::endl;
@@ -153,7 +179,12 @@ bool RedisManager::rpop(const std::string& key, std::string& value)
 
 bool RedisManager::hset(const std::string& key, const std::string& hkey, const std::string& value)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "HSET %s %s %s", key.c_str(), hkey.c_str(), value.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "HSET %s %s %s", key.c_str(), hkey.c_str(), value.c_str()) };
 	if (reply == nullptr || reply->type != REDIS_REPLY_INTEGER) {
 		// TODO: 打印日志
 		std::cout << "Execute command [ HSet " << key << "  " << hkey << "  " << value << " ] failure ! " << std::endl;
@@ -166,6 +197,11 @@ bool RedisManager::hset(const std::string& key, const std::string& hkey, const s
 
 bool RedisManager::hset(const char* key, const char* hkey, const char* hvalue, size_t hvaluelen)
 {
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
 	const char* argv[4];
 	size_t argvlen[4];
 	argv[0] = "HSET";
@@ -177,7 +213,7 @@ bool RedisManager::hset(const char* key, const char* hkey, const char* hvalue, s
 	argv[3] = hvalue;
 	argvlen[3] = hvaluelen;
 
-	Reply reply{ (redisReply*)redisCommandArgv(_connect, 4, argv, argvlen), deletor{} };
+	RedisReply reply{ (redisReply*)redisCommandArgv(conn, 4, argv, argvlen) };
 	if (reply == nullptr || reply->type != REDIS_REPLY_INTEGER) {
 		// TODO: 打印日志
 		std::cout << "Execute command [ HSet " << key << "  " << hkey << "  " << hvalue << " ] failure ! " << std::endl;
@@ -191,6 +227,11 @@ bool RedisManager::hset(const char* key, const char* hkey, const char* hvalue, s
 
 std::string RedisManager::hget(const std::string& key, const std::string& hkey)
 {
+	auto conn = _pool->get();
+	if (!conn) {
+		return "";
+	}
+
 	const char* argv[3];
 	size_t argvlen[3];
 	argv[0] = "HGET";
@@ -200,7 +241,7 @@ std::string RedisManager::hget(const std::string& key, const std::string& hkey)
 	argv[2] = hkey.c_str();
 	argvlen[2] = hkey.length();
 
-	Reply reply{ (redisReply*)redisCommandArgv(_connect, 3, argv, argvlen), deletor{} };
+	RedisReply reply{ (redisReply*)redisCommandArgv(conn, 3, argv, argvlen) };
 	if (reply == nullptr || reply->type == REDIS_REPLY_NIL) {
 		// TODO: 打印日志
 		std::cout << "Execute command [ HGet " << key << " " << hkey << "  ] failure ! " << std::endl;
@@ -214,7 +255,12 @@ std::string RedisManager::hget(const std::string& key, const std::string& hkey)
 
 bool RedisManager::del(const std::string& key)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "DEL %s", key.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "DEL %s", key.c_str()) };
 	if (reply == nullptr || reply->type != REDIS_REPLY_INTEGER) {
 		// TODO: 打印日志
 		std::cout << "Execute command [ Del " << key << " ] failure ! " << std::endl;
@@ -228,7 +274,12 @@ bool RedisManager::del(const std::string& key)
 
 bool RedisManager::contains(const std::string& key)
 {
-	Reply reply{ (redisReply*)redisCommand(_connect, "exists %s", key.c_str()), deletor{} };
+	auto conn = _pool->get();
+	if (!conn) {
+		return false;
+	}
+
+	RedisReply reply{ (redisReply*)redisCommand(conn, "exists %s", key.c_str())};
 	if (reply == nullptr || reply->type != REDIS_REPLY_INTEGER || reply->integer == 0) {
 		// TODO: 打印日志
 		std::cout << "Not Found [ Key " << key << " ]  ! " << std::endl;
@@ -241,5 +292,5 @@ bool RedisManager::contains(const std::string& key)
 
 void RedisManager::close()
 {
-	redisFree(_connect);
+	_pool->close();
 }
