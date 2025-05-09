@@ -13,3 +13,4 @@ client/CMakeLists.txt.user
 
 server/CMakeSettings.json
 server/VerifyCodeServer/node_modules
+server/VerifyCodeServer/package-lock.json
