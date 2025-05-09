@@ -13,33 +13,8 @@
 #include "HttpConnection.h"
 #include "GetVerifyCodeRpcClient.h"
 
-void TestRedisMgr() {
-	// assert(RedisManager::GetInstance().connect("127.0.0.1", 6380));
-	assert(RedisManager::GetInstance().auth("1234"));
-	assert(RedisManager::GetInstance().set("blogwebsite", "llfc.club"));
-	std::string value = "";
-	assert(RedisManager::GetInstance().get("blogwebsite", value));
-	assert(RedisManager::GetInstance().get("nonekey", value) == false);
-	assert(RedisManager::GetInstance().hset("bloginfo", "blogwebsite", "llfc.club"));
-	assert(RedisManager::GetInstance().hget("bloginfo", "blogwebsite") != "");
-	assert(RedisManager::GetInstance().contains("bloginfo"));
-	assert(RedisManager::GetInstance().del("bloginfo"));
-	assert(RedisManager::GetInstance().del("bloginfo"));
-	assert(RedisManager::GetInstance().contains("bloginfo") == false);
-	assert(RedisManager::GetInstance().lpush("lpushkey1", "lpushvalue1"));
-	assert(RedisManager::GetInstance().lpush("lpushkey1", "lpushvalue2"));
-	assert(RedisManager::GetInstance().lpush("lpushkey1", "lpushvalue3"));
-	assert(RedisManager::GetInstance().rpop("lpushkey1", value));
-	assert(RedisManager::GetInstance().rpop("lpushkey1", value));
-	assert(RedisManager::GetInstance().lpop("lpushkey1", value));
-	assert(RedisManager::GetInstance().lpop("lpushkey2", value) == false);
-	RedisManager::GetInstance().close();
-}
-
 int main()
 {
-	TestRedisMgr();
-	while (1) {}
 	// TODO: get_test
 	LogicSystem::GetInstance().registerGet("/get_test",
 		[](std::shared_ptr<HttpConnection> conn) {
@@ -56,9 +31,8 @@ int main()
 		[](std::shared_ptr<HttpConnection> conn) -> bool {
 			// 获取请求体
 			std::string body = beast::buffers_to_string(conn->request().body().data());
-			
-			// TODO: 打印日志
-			std::cout << "receive body is " << body << std::endl;
+
+			debug("receive body is {}", body);
 
 			// 设置响应头
 			conn->response().set(http::field::content_type, "text/json");
@@ -72,8 +46,7 @@ int main()
 				response_json["error"] = ErrorCode::EC_VALID_JSON;
 				beast::ostream(conn->response().body()) << response_json.toStyledString();
 
-				// TODO: 打印日志
-				std::cout << "Failed to parse JSON data!" << std::endl;
+				warn("Parse JSON data failed.");
 				return true;
 			}
 
@@ -82,8 +55,7 @@ int main()
 				response_json["error"] = ErrorCode::EC_VALID_JSON;
 				beast::ostream(conn->response().body()) << response_json.toStyledString();
 
-				// TODO: 打印日志
-				std::cout << "Invalid JSON: No \'Email\' Field" << std::endl;
+				warn("Invalid JSON data: No \'Email\' Field.");
 				return true;
 			}
 
@@ -93,8 +65,7 @@ int main()
 			response_json["email"] = request_json["email"]; // TODO: 应替换为 response.email()
 			beast::ostream(conn->response().body()) << response_json.toStyledString();
 
-			// TODO: 打印日志
-			std::cout << "email is " << email << std::endl;
+			debug("email is {}", email);
 			return true;
 		});
 
@@ -115,12 +86,12 @@ int main()
 			});
 
 		std::make_shared<GateServer>(ioc, port)->start();
-		// TODO: 打印日志
-		std::cout << "GateServer listen on port: " << port << std::endl;
+
+		info("GateServer listen on port: {}", port);
 		ioc.run();
 	}
 	catch (std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
+		error(e.what());
 		return EXIT_FAILURE;
 	}
 }

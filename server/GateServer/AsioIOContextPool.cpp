@@ -54,7 +54,7 @@ void AsioIOContextPool::stop()
 
 AsioIOContextPool::~AsioIOContextPool()
 {
-	// TODO: ¥Ú”°»’÷æ
+	info("Closing AsioIOContextPool.");
 	if (!_stopping) {
 		stop();
 	}

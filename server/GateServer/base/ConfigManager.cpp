@@ -4,9 +4,8 @@ ConfigManager::ConfigManager()
 {
 	boost::filesystem::path current_path = boost::filesystem::current_path();
 	boost::filesystem::path config_path = current_path / "config.ini";
-	
-	// TODO: ¥Ú”°»’÷æ
-	std::cout << "Config path: " << config_path << std::endl;
+
+	debug("config path: {}", config_path.string());
 
 	boost::property_tree::ptree pt;
 	boost::property_tree::read_ini(config_path.string(), pt);
@@ -19,11 +18,10 @@ ConfigManager::ConfigManager()
 		_config[name] = section;
 	}
 
-	// TODO: ¥˝…æ≥˝
 	for (const auto& [name, info] : _config) {
-		std::cout << "[" << name << "]" << std::endl;
+		debug("[{}]", name);
 		for (const auto& [k, v] : info._section_datas) {
-			std::cout << k << ' ' << v << std::endl;
+			debug("{} {}", k, v);
 		}
 	}
 }

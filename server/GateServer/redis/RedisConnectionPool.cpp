@@ -14,13 +14,11 @@ RedisConnectionPool::RedisConnectionPool(size_t pool_size, const std::string& ho
 
 		RedisReply reply{ (redisReply*)redisCommand(context, "AUTH %s", pwd.c_str()) };
 		if (reply->type == REDIS_REPLY_ERROR) {
-			// 打印日志
-			// std::cout << "认证失败" << std::endl;
+			warn("authentication failed.");
 			continue;
 		}
 
-		// 打印日志
-		// std::cout << "认证成功" << std::endl;
+		debug("authentication success.");
 		_connections.push(context);
 	}
 }

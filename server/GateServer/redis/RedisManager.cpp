@@ -16,25 +16,24 @@ bool RedisManager::get(const std::string& key, std::string& value)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed! Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "GET %s", key.c_str())  };
 	if (reply == nullptr) {
-		// TODO: 打印日志
-		std::cout << "[ Get " << key << " ] failed" << std::endl;
+		error("Execute command [ Get {} ] failed! Empty or nil reply.", key);
 		return false;
 	}
 
 	if (reply->type != REDIS_REPLY_STRING) {
-		std::cout << "[ Get " << key << " ] failed" << std::endl;
+		error("Execute command [ Get {} ] failed! Invalid reply.", key);
 		return false;
 	}
 
 	value = reply->str;
 
-	// TODO: 打印日志
-	std::cout << "Success to execute command [ Get " << key << "]" << std::endl;
+	debug("Success to execute command [ Get {} ].", key);
 	return true;
 }
 
@@ -42,14 +41,14 @@ bool RedisManager::set(const std::string& key, const std::string& value)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "SET %s %s", key.c_str(), value.c_str()) };
 
 	if (reply == nullptr) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ SET " << key << " " << value << " ] failed!" << std::endl;
+		error("Execute command [ SET {}:{} failed! Empty or nil reply.", key, value);
 		return false;
 	}
 
@@ -57,12 +56,11 @@ bool RedisManager::set(const std::string& key, const std::string& value)
 		&& (strcmp(reply->str, "OK") == 0
 			|| strcmp(reply->str, "ok")))
 	{
-		// TODO: 打印日志
-		std::cout << "Execute command [ SET " << key << " " << value << " ] failed!" << std::endl;
+		error("Execute command [ SET {}:{} failed! Invalid reply.", key, value);
 		return false;
 	}
 
-	std::cout << "Execute command [ SET " << key << " " << value << " ] success!" << std::endl;
+	debug("Success to execute command [ SET {}:{} ].", key, value);
 	return true;
 }
 
@@ -70,18 +68,17 @@ bool RedisManager::auth(const std::string& passwd)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "AUTH %s", passwd.c_str()) };
 	if (reply->type == REDIS_REPLY_ERROR) {
-		// TODO: 打印日志
-		// std::cout << "认证失败!" << std::endl;
+		error("Authentication failed. Invalid reply.");
 		return false;
 	}
 
-	// TODO: 打印日志
-	// std::cout << "认证成功" << std::endl;
+	debug("Authentication success.");
 	return true;
 }
 
@@ -89,24 +86,22 @@ bool RedisManager::lpush(const std::string& key, const std::string& value)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "LPUSH %s %s", key.c_str(), value.c_str()) };
 	if (reply == nullptr) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ LPUSH " << key << "  " << value << " ] failure ! " << std::endl;
+		error("Execute command [ LPUSH {}:{} ] failed. Empty or nil reply.", key, value);
 		return false;
 	}
 
 	if (reply->type != REDIS_REPLY_INTEGER || reply->integer <= 0) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ LPUSH " << key << "  " << value << " ] failure ! " << std::endl;
+		error("Execute command [ LPUSH {}:{} ] failed. Invalid reply.", key, value);
 		return false;
 	}
 
-	// TODO: 打印日志
-	std::cout << "Execute command [ LPUSH " << key << "  " << value << " ] success ! " << std::endl;
+	debug("Success to execute command [ LPUSH {}:{} ].", key, value);
 	return true;
 }
 
@@ -114,20 +109,18 @@ bool RedisManager::lpop(const std::string& key, std::string& value)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "LPOP %s", key.c_str()) };
 	if (reply == nullptr || reply->type == REDIS_REPLY_NIL) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ LPOP " << key << "  " << value << " ] failure ! " << std::endl;
+		error("Execute command [ LPOP {}:{} ] failed! Empty or nil reply.", key, value);
 		return false;
 	}
 
 	value = reply->str;
-
-	// TODO: 打印日志
-	std::cout << "Execute command [ LPOP " << key << "  " << value << " ] success ! " << std::endl;
+	debug("Success to execute command [ LPOP {}:{} ].", key, value);
 	return true;
 }
 
@@ -135,24 +128,22 @@ bool RedisManager::rpush(const std::string& key, const std::string& value)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "RPUSH %s %s", key.c_str(), value.c_str()) };
 	if (reply == nullptr) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ RPUSH " << key << "  " << value << " ] failure ! " << std::endl;
+		error("Execute command [ RPUSH {}:{} ] failed! Empty or nil reply.", key, value);
 		return false;
 	}
 
 	if (reply->type != REDIS_REPLY_INTEGER || reply->integer <= 0) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ RPUSH " << key << "  " << value << " ] failure ! " << std::endl;
+		error("Execute command [ RPUSH {}:{} ] failed! Invalid reply.", key, value);
 		return false;
 	}
 
-	// TODO: 打印日志
-	std::cout << "Execute command [ RPUSH " << key << "  " << value << " ] success ! " << std::endl;
+	debug("Success to execute command [ RPUSH {}:{} ].", key, value);
 	return true;
 }
 
@@ -160,20 +151,18 @@ bool RedisManager::rpop(const std::string& key, std::string& value)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis connection pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "RPOP %s", key.c_str()) };
 	if (reply == nullptr || reply->type == REDIS_REPLY_NIL) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ RPOP " << key << "  " << value << " ] failure ! " << std::endl;
+		error("Execute command [ RPOP {}:{} ] failed! Empty or nil reply.", key, value);
 		return false;
 	}
 
 	value = reply->str;
-
-	// TODO: 打印日志
-	std::cout << "Execute command [ RPOP " << key << "  " << value << " ] success ! " << std::endl;
+	debug("Success to execute command [ RPOP {}:{} ].", key, value);
 	return true;
 }
 
@@ -181,17 +170,16 @@ bool RedisManager::hset(const std::string& key, const std::string& hkey, const s
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "HSET %s %s %s", key.c_str(), hkey.c_str(), value.c_str()) };
 	if (reply == nullptr || reply->type != REDIS_REPLY_INTEGER) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ HSet " << key << "  " << hkey << "  " << value << " ] failure ! " << std::endl;
+		error("Execute command [ HSET {} {} {} ] failed! Invalid reply.", key, hkey, value);
 		return false;
 	}
-	// TODO: 打印日志
-	std::cout << "Execute command [ HSet " << key << "  " << hkey << "  " << value << " ] success ! " << std::endl;
+	debug("Success to execute command [ HSET {} {} {} ].", key, hkey, value);
 	return true;
 }
 
@@ -199,6 +187,7 @@ bool RedisManager::hset(const char* key, const char* hkey, const char* hvalue, s
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
@@ -215,13 +204,10 @@ bool RedisManager::hset(const char* key, const char* hkey, const char* hvalue, s
 
 	RedisReply reply{ (redisReply*)redisCommandArgv(conn, 4, argv, argvlen) };
 	if (reply == nullptr || reply->type != REDIS_REPLY_INTEGER) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ HSet " << key << "  " << hkey << "  " << hvalue << " ] failure ! " << std::endl;
+		error("Execute command [ HSET {} {} {} ] failed! Invalid reply.", key, hkey, hvalue);
 		return false;
 	}
-
-	// TODO: 打印日志
-	std::cout << "Execute command [ HSet " << key << "  " << hkey << "  " << hvalue << " ] success ! " << std::endl;
+	debug("Success to execute command [ HSET {} {} {} ].", key, hkey, hvalue);
 	return true;
 }
 
@@ -229,6 +215,7 @@ std::string RedisManager::hget(const std::string& key, const std::string& hkey)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return "";
 	}
 
@@ -243,13 +230,11 @@ std::string RedisManager::hget(const std::string& key, const std::string& hkey)
 
 	RedisReply reply{ (redisReply*)redisCommandArgv(conn, 3, argv, argvlen) };
 	if (reply == nullptr || reply->type == REDIS_REPLY_NIL) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ HGet " << key << " " << hkey << "  ] failure ! " << std::endl;
+		error("Execute command [ HGET {} {} ] failed! Empty or nil reply.", key, hkey);
 		return "";
 	}
 	std::string value = reply->str;
-	// TODO: 打印日志
-	std::cout << "Execute command [ HGet " << key << " " << hkey << " ] success ! " << std::endl;
+	debug("Success to execute command [ HGET {} {} ].", key, hkey);
 	return value;
 }
 
@@ -257,18 +242,16 @@ bool RedisManager::del(const std::string& key)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "DEL %s", key.c_str()) };
 	if (reply == nullptr || reply->type != REDIS_REPLY_INTEGER) {
-		// TODO: 打印日志
-		std::cout << "Execute command [ Del " << key << " ] failure ! " << std::endl;
+		error("Execute command [ DEL {} ] failed! Invalid reply.", key);
 		return false;
 	}
-
-	// TODO: 打印日志
-	std::cout << "Execute command [ Del " << key << " ] success ! " << std::endl;
+	debug("Success to execute command [ DEL {} ].", key);
 	return true;
 }
 
@@ -276,17 +259,16 @@ bool RedisManager::contains(const std::string& key)
 {
 	auto conn = _pool->get();
 	if (!conn) {
+		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
 	}
 
 	RedisReply reply{ (redisReply*)redisCommand(conn, "exists %s", key.c_str())};
 	if (reply == nullptr || reply->type != REDIS_REPLY_INTEGER || reply->integer == 0) {
-		// TODO: 打印日志
-		std::cout << "Not Found [ Key " << key << " ]  ! " << std::endl;
+		debug("Key {} does not exist.", key);
 		return false;
 	}
-	// TODO: 打印日志
-	std::cout << " Found [ Key " << key << " ] exists ! " << std::endl;
+	debug("Key {} exists.", key);
 	return true;
 }
 

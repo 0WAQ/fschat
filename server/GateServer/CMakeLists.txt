@@ -1,8 +1,9 @@
 ﻿project(GateServer)
 
 add_executable(${PROJECT_NAME}
-		"base/singleton.h"
 		"base/noncopyable.h"
+		"base/singleton.h"
+		"base/logger.h"
 		"base/ulti.h"					"base/ulti.cpp"
 		"base/ConfigManager.h"			"base/ConfigManager.cpp"
 

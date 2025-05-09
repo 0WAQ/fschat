@@ -20,7 +20,7 @@ void GateServer::start()
 			try {
 				// 出错后放弃该连接, 继续监听
 				if (ec) {
-					// TODO: 打印日志
+					warn("{}", ec.to_string());
 
 					self->start();
 					return;
@@ -33,7 +33,7 @@ void GateServer::start()
 				self->start();
 			}
 			catch (std::exception& e) {
-				// TODO: exception?
+				error(e.what());
 			}
 		});
 }

@@ -1,8 +1,6 @@
 #ifndef _ULTI_H_
 #define _ULTI_H_
 
-#include <spdlog/common.h>
-
 #include <boost/beast.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/asio.hpp>
@@ -11,7 +9,7 @@
 #include <json/value.h>
 #include <json/reader.h>
 
-#include <iostream>	// TODO: 添加日志库后删除
+#include "logger.h"
 
 namespace beast = boost::beast;
 namespace http = beast::http;

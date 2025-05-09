@@ -13,8 +13,7 @@ void HttpConnection::start()
 		[self](beast::error_code ec, std::size_t size) {
 			try {
 				if (ec) {
-					// TODO: 打印日志
-					std::cout << "http read err is " << ec.what() << std::endl;
+					error("Http read failed! {}", ec.what());
 					return;
 				}
 
@@ -24,8 +23,7 @@ void HttpConnection::start()
 				self->writeResponse();
 			}
 			catch (std::exception& e) {
-				// TODO: 打印日志
-				std::cout << "exception is " << e.what() << std::endl;
+				error(e.what());
 			}
 		});
 

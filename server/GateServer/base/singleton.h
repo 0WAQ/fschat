@@ -6,8 +6,9 @@ class Singleton
 {
 public:
 
-	static T& GetInstance() {
-		static T instance;
+	template <typename... Args>
+	static T& GetInstance(Args&&... args) {
+		static T instance(std::forward<Args>(args)...);
 		return instance;
 	}
 
@@ -15,7 +16,8 @@ public:
 
 protected:
 
-	Singleton() = default;
+	template <typename... Args>
+	explicit Singleton(Args&&... args) { }
 
 private:
 
