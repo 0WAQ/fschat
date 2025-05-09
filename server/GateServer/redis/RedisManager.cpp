@@ -14,7 +14,7 @@ RedisManager::RedisManager()
 
 bool RedisManager::get(const std::string& key, std::string& value)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed! Redis Connection Pool has been stopped.");
 		return false;
@@ -39,7 +39,7 @@ bool RedisManager::get(const std::string& key, std::string& value)
 
 bool RedisManager::set(const std::string& key, const std::string& value)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
@@ -66,7 +66,7 @@ bool RedisManager::set(const std::string& key, const std::string& value)
 
 bool RedisManager::auth(const std::string& passwd)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
@@ -84,7 +84,7 @@ bool RedisManager::auth(const std::string& passwd)
 
 bool RedisManager::lpush(const std::string& key, const std::string& value)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
@@ -107,7 +107,7 @@ bool RedisManager::lpush(const std::string& key, const std::string& value)
 
 bool RedisManager::lpop(const std::string& key, std::string& value)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
@@ -126,7 +126,7 @@ bool RedisManager::lpop(const std::string& key, std::string& value)
 
 bool RedisManager::rpush(const std::string& key, const std::string& value)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
@@ -149,7 +149,7 @@ bool RedisManager::rpush(const std::string& key, const std::string& value)
 
 bool RedisManager::rpop(const std::string& key, std::string& value)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis connection pool has been stopped.");
 		return false;
@@ -168,7 +168,7 @@ bool RedisManager::rpop(const std::string& key, std::string& value)
 
 bool RedisManager::hset(const std::string& key, const std::string& hkey, const std::string& value)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
@@ -185,7 +185,7 @@ bool RedisManager::hset(const std::string& key, const std::string& hkey, const s
 
 bool RedisManager::hset(const char* key, const char* hkey, const char* hvalue, size_t hvaluelen)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
@@ -213,7 +213,7 @@ bool RedisManager::hset(const char* key, const char* hkey, const char* hvalue, s
 
 std::string RedisManager::hget(const std::string& key, const std::string& hkey)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return "";
@@ -240,7 +240,7 @@ std::string RedisManager::hget(const std::string& key, const std::string& hkey)
 
 bool RedisManager::del(const std::string& key)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;
@@ -257,7 +257,7 @@ bool RedisManager::del(const std::string& key)
 
 bool RedisManager::contains(const std::string& key)
 {
-	auto conn = _pool->get();
+	RedisContext conn{ _pool };
 	if (!conn) {
 		error("Connection failed. Redis Connection Pool has been stopped.");
 		return false;

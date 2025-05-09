@@ -24,7 +24,8 @@ public:
 
 	void ret(redisContext* conn);
 
-	// TODO: ÊÇ·ñÉ¾³ý?
+	void clear();
+
 	void close();
 
 	~RedisConnectionPool();
@@ -37,6 +38,31 @@ private:
 	std::queue<redisContext*> _connections;
 	std::mutex _mtx;
 	std::condition_variable _cond;
+};
+
+class RedisContext
+{
+public:
+	explicit RedisContext(std::unique_ptr<RedisConnectionPool>& pool)
+		: _pool(pool)
+		, _context(_pool->get())
+	{ }
+
+	operator bool() {
+		return _context != nullptr;
+	}
+
+	operator redisContext* () {
+		return _context;
+	}
+
+	~RedisContext() {
+		_pool->ret(_context);
+	}
+
+private:
+	std::unique_ptr<RedisConnectionPool>& _pool;
+	redisContext* _context;
 };
 
 /**

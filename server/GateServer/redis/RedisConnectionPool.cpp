@@ -9,6 +9,9 @@ RedisConnectionPool::RedisConnectionPool(size_t pool_size, const std::string& ho
 	for (size_t i = 0; i < _pool_size; ++i) {
 		redisContext* context = redisConnect(_host, port);
 		if (!context || context->err) {
+			if (context) {
+				redisFree(context);
+			}
 			continue;
 		}
 
@@ -53,11 +56,21 @@ void RedisConnectionPool::ret(redisContext* conn)
 	_cond.notify_one();
 }
 
+void RedisConnectionPool::clear()
+{
+	std::lock_guard<std::mutex> gurad(_mtx);
+	while (!_connections.empty()) {
+		redisFree(_connections.front());
+		_connections.pop();
+	}
+}
+
 void RedisConnectionPool::close()
 {
 	if (!_stop) {
 		_stop = true;
 		_cond.notify_all();
+		this->clear();
 	}
 }
 
@@ -65,10 +78,5 @@ RedisConnectionPool::~RedisConnectionPool()
 {
 	if (!_stop) {
 		close();
-	}
-
-	std::lock_guard<std::mutex> gurad(_mtx);
-	while (!_connections.empty()) {
-		_connections.pop();
 	}
 }

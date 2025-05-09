@@ -13,6 +13,31 @@
 #include "HttpConnection.h"
 #include "GetVerifyCodeRpcClient.h"
 
+// TODO: to be deleted
+void testRedisManager()
+{
+	assert(RedisManager::GetInstance().connect("127.0.0.1", 6380));
+	assert(RedisManager::GetInstance().auth("1234"));
+	assert(RedisManager::GetInstance().set("blogwebsite", "llfc.club"));
+	std::string value = "";
+	assert(RedisManager::GetInstance().get("blogwebsite", value));
+	assert(RedisManager::GetInstance().get("nonekey", value) == false);
+	assert(RedisManager::GetInstance().hset("bloginfo", "blogwebsite", "llfc.club"));
+	assert(RedisManager::GetInstance().hget("bloginfo", "blogwebsite") != "");
+	assert(RedisManager::GetInstance().contains("bloginfo"));
+	assert(RedisManager::GetInstance().del("bloginfo"));
+	assert(RedisManager::GetInstance().del("bloginfo"));
+	assert(RedisManager::GetInstance().contains("bloginfo") == false);
+	assert(RedisManager::GetInstance().lpush("lpushkey1", "lpushvalue1"));
+	assert(RedisManager::GetInstance().lpush("lpushkey1", "lpushvalue2"));
+	assert(RedisManager::GetInstance().lpush("lpushkey1", "lpushvalue3"));
+	assert(RedisManager::GetInstance().rpop("lpushkey1", value));
+	assert(RedisManager::GetInstance().rpop("lpushkey1", value));
+	assert(RedisManager::GetInstance().lpop("lpushkey1", value));
+	assert(RedisManager::GetInstance().lpop("lpushkey2", value) == false);
+	RedisManager::GetInstance().close();
+}
+
 int main()
 {
 	// TODO: get_test
