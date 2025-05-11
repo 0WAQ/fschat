@@ -23,11 +23,22 @@ using HttpResponse = http::response<http::dynamic_body>;
 
 ////////////////////////////////////////////////////////////
 
+const std::string CODE_PREFIX = "code_";
+
+////////////////////////////////////////////////////////////
+
 // TODO: ¸ü¸ÄÎ»ÖÃ
 enum ErrorCode {
 	EC_SUCCESS = 0,
-	EC_VALID_JSON = 1001,
+	EC_INVALID_JSON = 1001,
 	EC_RPC_FAILED = 1002,
+	EC_INVALID_EMAIL_OR_EXPIRED_VERIFY_CODE = 1003,
+	EC_VERIFY_CODE_ERROR = 1004,
+	EC_USER_EXIST = 1005,
+	EC_PASSWD_ERROR = 1006,
+	EC_EMAIL_NOT_MATCH = 1007,
+	EC_PASSWD_UPDATE_ERROR = 1008,
+	EC_PASSWD_INVALID = 1009
 };
 
 ////////////////////////////////////////////////////////////

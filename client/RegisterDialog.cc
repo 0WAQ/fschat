@@ -19,7 +19,6 @@ RegisterDialog::RegisterDialog(QWidget *parent)
     repolish(ui->error_tip_label);
 
     // 连接点击按钮和发出对应信号
-    // connect(ui->confirm_button, &QPushButton::clicked, this, nullptr);  // TODO: 注册界面的 confirm_buttton
     connect(ui->cancel_button, &QPushButton::clicked, this, &RegisterDialog::sig_switch_login);
 
     connect(&HttpManager::GetInstance(), &HttpManager::sig_mod_register_http_request_finish,
@@ -35,20 +34,34 @@ RegisterDialog::~RegisterDialog()
 
 void RegisterDialog::initHttpHandlers()
 {
-    // 注册 验证码获取
+    // 注册 获取验证码
     _handlers.insert(RequestId::ID_GET_VERIFY_CODE, [this](const QJsonObject& json) {
         int error = json["error"].toInt();
         if (error != ErrorCode::EC_SUCCESS) {
-            showTipMsg(tr("参数错误"), false);
+            showTipMsg(tr("验证码获取失败"), false);
             return;
         }
 
+        // TODO: to be deleted
         auto email = json["email"].toString();
         showTipMsg(tr("验证码已发送, 请注意查收"), true);
         qDebug() << "email is " << email;
 
     });
 
+    // 注册 用户注册
+    _handlers.insert(RequestId::ID_REGISTER_USER, [this](const QJsonObject& json) {
+        int error = json["error"].toInt();
+        if (error != ErrorCode::EC_SUCCESS) {
+            showTipMsg(tr("用户注册失败"), false);
+            return;
+        }
+
+        // TODO: to be deleted
+        auto email = json["email"].toString();
+        showTipMsg(tr("用户注册成功"), true);
+        qDebug() << "email is " << email;
+    });
 }
 
 void RegisterDialog::showTipMsg(QString msg, bool is_ok)
@@ -83,12 +96,46 @@ void RegisterDialog::on_verify_button_clicked()
 
 void RegisterDialog::on_confirm_button_clicked()
 {
+    if (ui->user_edit->text().isEmpty()) {
+        showTipMsg(tr("用户名不能为空"), false);
+        return;
+    }
 
-}
+    if (ui->email_edit->text().isEmpty()) {
+        showTipMsg(tr("邮箱不能为空"), false);
+        return;
+    }
 
-void RegisterDialog::on_cancel_button_clicked()
-{
+    // TODO: 为密码添加一些规则
+    if (ui->passwd_edit->text().isEmpty()) {
+        showTipMsg(tr("密码不能为空"), false);
+        return;
+    }
 
+    if (ui->confirm_edit->text().isEmpty()) {
+        showTipMsg(tr("确认密码不能为空"), false);
+        return;
+    }
+
+    if (ui->passwd_edit->text() != ui->confirm_edit->text()) {
+        showTipMsg(tr("密码和确认密码不匹配"), false);
+        return;
+    }
+
+    if (ui->verify_edit->text().isEmpty()) {
+        showTipMsg(tr("验证码不能为空"), false);
+        return;
+    }
+
+    // 发送 http 请求: 注册用户
+    QJsonObject json;
+    json["user"] = ui->user_edit->text();
+    json["email"] = ui->email_edit->text();
+    json["passwd"] = ui->passwd_edit->text();
+    json["confirm"] = ui->confirm_edit->text();
+    json["verify_code"] = ui->verify_edit->text();
+    HttpManager::GetInstance().SendHttpRequest(QUrl(gate_url_prefix + "/register"),
+                                               json, RequestId::ID_REGISTER_USER, Modules::MOD_REGISTER);
 }
 
 void RegisterDialog::slot_mod_register_http_request_finish(RequestId id, QString res, ErrorCode ec)

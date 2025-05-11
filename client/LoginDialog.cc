@@ -10,8 +10,13 @@ LoginDialog::LoginDialog(QWidget *parent)
     // 密码框设置为隐藏状态
     ui->passwd_edit->setEchoMode(QLineEdit::Password);
 
-    // 点击 register_button 时, 发起 switch_register 信号
+    connect(ui->login_button, &QPushButton::clicked, this, &LoginDialog::on_login_button_clicked);
     connect(ui->register_button, &QPushButton::clicked, this, &LoginDialog::sig_switch_register);
+}
+
+void LoginDialog::on_login_button_clicked()
+{
+    // TODO:
 }
 
 LoginDialog::~LoginDialog()

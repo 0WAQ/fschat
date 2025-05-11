@@ -51,7 +51,11 @@ async function getVerifyCode(call, callback) {
 
 function main() {
     var server = new grpc.Server();
+
+    // 添加服务:　获取验证码
     server.addService(message_proto.GetVerifyCodeService.service, { getVerifyCode: getVerifyCode });
+
+    // 绑定并运行
     server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), (err, port) => {
         if(err) {
             console.log('Server bind failed: ', err);

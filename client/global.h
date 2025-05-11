@@ -22,7 +22,7 @@ extern std::function<void(QWidget*)> repolish;
 
 enum RequestId {
     ID_GET_VERIFY_CODE	= 1001,	// 获取验证码
-    ID_GET_USER		   	= 1002,	// 注册哟用户
+    ID_REGISTER_USER    = 1002,	// 注册用户
 };
 
 enum Modules {

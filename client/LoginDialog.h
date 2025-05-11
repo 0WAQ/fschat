@@ -21,6 +21,9 @@ signals:
      */
     void sig_switch_register();
 
+private slots:
+    void on_login_button_clicked();     // 登录界面点击登录按钮
+
 private:
     Ui::LoginDialog *ui;
 };
