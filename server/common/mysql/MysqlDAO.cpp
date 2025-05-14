@@ -17,37 +17,37 @@ std::pair<int, int> MysqlDAO::regUser(const std::string& name, const std::string
 {
 	auto conn = _pool->get();
 	if (!conn) {
-		return std::make_pair(0, -1);	// TODO: ·µ»Ø´íÎó?
+		return { 0, -1 };
 	}
 
 	try {
-		std::unique_ptr<sql::PreparedStatement> stmt{ conn->conn()->prepareStatement("\
-				CALL reg_user(?,?,?,@curr_uid,@error)"
-			) };
+		std::unique_ptr<sql::PreparedStatement> stmt{
+			conn->conn()->prepareStatement("CALL reg_user(?,?,?,@curr_uid,@error_code)")
+		};
 		stmt->setString(1, name);
 		stmt->setString(2, email);
 		stmt->setString(3, pwd);
-
 		stmt->execute();
 
 		std::unique_ptr<sql::Statement> stmt_res{ conn->conn()->createStatement() };
-		std::unique_ptr<sql::ResultSet> rs{ stmt_res->executeQuery("SELECT @curr_uid AS result")};
-		if (!rs->next()) {
+		std::unique_ptr<sql::ResultSet> rs{
+			stmt_res->executeQuery("SELECT @curr_uid AS uid, @error_code AS ec")
+		};
+		if (rs->next()) {
+			int curr_uid = rs->getInt("uid");
+			int ec = rs->getInt("ec");
 			_pool->ret(std::move(conn));
-			return { 0, -1 };
+			return { curr_uid, ec };
 		}
 
-		int curr_uid = rs->getInt("result");
-		debug("Current uid: {}", curr_uid);
 		_pool->ret(std::move(conn));
-		return {curr_uid, 0};
+		return { 0, -1 };
 	}
 	catch (sql::SQLException& e) {
 		_pool->ret(std::move(conn));
 		error("SQLException: {} (MySQL error code: {}, SQLState: {}).", e.what(), e.getErrorCode(), e.getSQLState());
-		return {0, e.getErrorCode() };
+		return { 0, -1 };
 	}
-	return { 0, 0 };
 }
 
 bool MysqlDAO::checkEmail(const std::string& name, const std::string& email)

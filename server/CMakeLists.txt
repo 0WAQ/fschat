@@ -1,72 +1,46 @@
 ﻿cmake_minimum_required (VERSION 3.16)
 project (server)
 
-set(CMAKE_CXX_STANDARD_REQUIRED 20)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-# 根据构建类型设置链接路径和编译选项
+# 第三方库路径配置
 set(THIRD_PARTY "/home/bwb/pkgs")
 string(TOLOWER "${CMAKE_BUILD_TYPE}" BUILD_TYPE_LOWER)
 
-# 搜索 spdlog
-set(spdlog_ROOT "${THIRD_PARTY}/spdlog")
-set(spdlog_INCLUDE_DIR "${spdlog_ROOT}/include")
-set(spdlog_LIBRARY_DIR "${spdlog_ROOT}/lib")
-set(spdlog_DIR "${spdlog_ROOT}/lib/cmake/spdlog")
+list(APPEND CMAKE_PREFIX_PATH
+    "${THIRD_PARTY}/spdlog"
+    "${THIRD_PARTY}/jsoncpp/${BUILD_TYPE_LOWER}"
+    "${THIRD_PARTY}/boost/${BUILD_TYPE_LOWER}"
+    "${THIRD_PARTY}/grpc/${BUILD_TYPE_LOWER}"
+    "${THIRD_PARTY}/hiredis/${BUILD_TYPE_LOWER}"
+)
+
+# 查找所有依赖包
 find_package(spdlog REQUIRED)
-
-# 搜索 boost
-set(Boost_ROOT "${THIRD_PARTY}/boost/${BUILD_TYPE_LOWER}")
-set(Boost_INCLUDE_DIR "${Boost_ROOT}/include")
-set(Boost_LIBRARY_DIR "${Boost_ROOT}/lib")
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_NO_SYSTEM_PATH ON)
-set(Boost_DIR "${Boost_ROOT}/lib/cmake/boost")
-find_package(Boost 1.88.0 REQUIRED COMPONENTS system thread filesystem)
-
-
-# 搜索 jsoncpp
-set(jsoncpp_ROOT "${THIRD_PARTY}/jsoncpp/${BUILD_TYPE_LOWER}")
-set(jsoncpp_INCLUDE_DIR "${jsoncpp_ROOT}/include")
-set(jsoncpp_LIBRARY_DIR "${jsoncpp_ROOT}/lib")
-set(jsoncpp_DIR "${jsoncpp_ROOT}/lib/cmake/jsoncpp")
 find_package(jsoncpp REQUIRED)
-
-
-# 搜索 protobuf (头文件和库与 grpc 在同一路径下)
-set(protobuf_ROOT "${THIRD_PARTY}/grpc/${BUILD_TYPE_LOWER}")
-set(protobuf_DIR "${protobuf_ROOT}/lib/cmake/protobuf")
-find_package(protobuf CONFIG REQUIRED)
-
-
-# 搜索 grpc
-set(gRPC_ROOT "${THIRD_PARTY}/grpc/${BUILD_TYPE_LOWER}")
-set(gRPC_INCLUDE_DIR "${gRPC_ROOT}/include")
-set(gRPC_LIBRARY_DIR "${gRPC_ROOT}/lib")
-set(gRPC_DIR "${gRPC_ROOT}/lib/cmake/grpc")
+find_package(Boost 1.88.0 REQUIRED COMPONENTS system thread filesystem)
+find_package(protobuf REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 
-
-# 搜索 hiredis
-set(HIREDIS_ROOT "${THIRD_PARTY}/hiredis/${BUILD_TYPE_LOWER}")
-set(HIREDIS_INCLUDE_DIR "${HIREDIS_ROOT}/include")
-set(HIREDIS_LIBRARY_DIR "${HIREDIS_ROOT}/lib")
-
-# 搜索 mysql-connector-c++
-find_library(MYSQLCPPCONN_LIBRARY NAMES mysqlcppconn)
-find_library(MYSQLCLIENT_LIBRARY NAMES mysqlclient)
-set(MYSQL_INCLUDE_DIR "/usr/include/cppconn"
-                      "/usr/include/mysql_connection.h"
-                      "/usr/include/mysql_driver.h"
-                      "/usr/include/mysql_error.h")
-set(MYSQL_LIBRARY_DIR "/usr/lib/x86_64-linux-gnu")
+find_package(OpenSSL REQUIRED)  # MySQL Connector 的依赖
+find_package(Threads REQUIRED)
 
 
-# 搜索 OpenSSL
-find_package(OpenSSL REQUIRED)
+# 自定义查找 MySQL Connector
+find_path(MYSQL_INCLUDE_DIRS NAMES mysql_connection.h cppconn/connection.h REQUIRED)
+find_library(MYSQL_LIBRARY NAMES mysqlcppconn mysqlclient REQUIRED)
+
+# 自定义查找 hiredis
+find_path(HIREDIS_INCLUDE_DIRS NAMES hiredis/hiredis.h REQUIRED)
+find_library(HIREDIS_LIBRARY NAMES hiredis REQUIRED)
 
 # 添加子模块
+add_subdirectory(common)
 add_subdirectory(GateServer)

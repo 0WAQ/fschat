@@ -4,6 +4,7 @@
 #include "base/ulti.h"
 #include "SqlConnectionPool.h"
 
+// TODO: 业务类不要放在common模块中
 struct UserInfo {
 	std::string name;
 	std::string pwd;

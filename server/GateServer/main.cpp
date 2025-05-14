@@ -9,6 +9,7 @@
 #include "base/ConfigManager.h"
 #include "redis/RedisManager.h"
 #include "mysql/MysqlManager.h"
+
 #include "GateServer.h"
 #include "LogicSystem.h"
 #include "HttpConnection.h"

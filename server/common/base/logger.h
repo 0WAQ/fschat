@@ -24,13 +24,12 @@ private:
 		// TODO: 参数值
 		spdlog::init_thread_pool(8192, 1);
 
-		auto stdout_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+		auto stdout_sink = std::make_shared<spdlog::sinks::ansicolor_stdout_sink_mt>();
 		stdout_sink->set_level(spdlog::level::trace);
 		
-		auto stderr_sink = std::make_shared<spdlog::sinks::stderr_color_sink_mt>();
-		stderr_sink->set_level(spdlog::level::trace);
+		// TODO: 像文件中打印, 改变打印格式
 
-		std::vector<spdlog::sink_ptr> sinks{ stdout_sink, stderr_sink };
+		std::vector<spdlog::sink_ptr> sinks{ stdout_sink };
 		_logger = std::make_shared<spdlog::async_logger>(spdlog::async_logger{
 				"async-logger",
 				sinks.begin(),
