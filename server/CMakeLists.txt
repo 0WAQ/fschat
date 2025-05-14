@@ -55,6 +55,18 @@ set(HIREDIS_ROOT "${THIRD_PARTY}/hiredis/${BUILD_TYPE_LOWER}")
 set(HIREDIS_INCLUDE_DIR "${HIREDIS_ROOT}/include")
 set(HIREDIS_LIBRARY_DIR "${HIREDIS_ROOT}/lib")
 
+# 搜索 mysql-connector-c++
+find_library(MYSQLCPPCONN_LIBRARY NAMES mysqlcppconn)
+find_library(MYSQLCLIENT_LIBRARY NAMES mysqlclient)
+set(MYSQL_INCLUDE_DIR "/usr/include/cppconn"
+                      "/usr/include/mysql_connection.h"
+                      "/usr/include/mysql_driver.h"
+                      "/usr/include/mysql_error.h")
+set(MYSQL_LIBRARY_DIR "/usr/lib/x86_64-linux-gnu")
+
+
+# 搜索 OpenSSL
+find_package(OpenSSL REQUIRED)
 
 # 添加子模块
 add_subdirectory(GateServer)

@@ -41,26 +41,38 @@ void RegisterDialog::initHttpHandlers()
             showTipMsg(tr("验证码获取失败"), false);
             return;
         }
-
-        // TODO: to be deleted
-        auto email = json["email"].toString();
         showTipMsg(tr("验证码已发送, 请注意查收"), true);
-        qDebug() << "email is " << email;
+
+        qDebug() << "email is " << json["email"].toString();;
 
     });
 
     // 注册 用户注册
     _handlers.insert(RequestId::ID_REGISTER_USER, [this](const QJsonObject& json) {
-        int error = json["error"].toInt();
-        if (error != ErrorCode::EC_SUCCESS) {
-            showTipMsg(tr("用户注册失败"), false);
-            return;
+        switch (json["error"].toInt())
+        {
+        case ErrorCode::EC_REGISTER_SUCCESS:
+            showTipMsg(tr("用户注册成功"), true);
+            qDebug() << "uid is " << json["uid"].toString();
+            break;
+        case ErrorCode::EC_REGISTER_MYSQL_EXCEPTION:
+            showTipMsg(tr("用户注册失败, MySQL异常"), false);
+            break;
+        case ErrorCode::EC_REGISTER_EXPIRED_VERIFY_CODE:
+            showTipMsg(tr("用户注册失败, 验证码已过期, 请重新获取"), false);
+            break;
+        case ErrorCode::EC_REGISTER_VERIFY_CODE_ERROR:
+            showTipMsg(tr("用户注册失败, 验证码错误, 请重新输入"), false);
+            break;
+        case ErrorCode::EC_REGISTER_USER_EXIST:
+            showTipMsg(tr("用户注册失败, 用户名已存在"), false);
+            break;
+        case ErrorCode::EC_REGISTER_EMAIL_EXIST:
+            showTipMsg(tr("用户注册失败, 邮箱已存在"), false);
+            break;
+        default:
+            break;
         }
-
-        // TODO: to be deleted
-        auto email = json["email"].toString();
-        showTipMsg(tr("用户注册成功"), true);
-        qDebug() << "email is " << email;
     });
 }
 
@@ -84,10 +96,10 @@ void RegisterDialog::on_verify_button_clicked()
         QJsonObject json;
         json["email"] = email;
 
+        showTipMsg(tr("验证码发送中"), true);
         // TODO: 从配置文件中读取
         HttpManager::GetInstance().SendHttpRequest(QUrl(gate_url_prefix + "/get_verify_code"),
                                                    json, RequestId::ID_GET_VERIFY_CODE, Modules::MOD_REGISTER);
-        showTipMsg(tr("验证码已发送"), true);
     }
     else {
         showTipMsg(tr("无效的邮箱地址"), false);

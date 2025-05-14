@@ -8,6 +8,7 @@
 #include "base/ulti.h"
 #include "base/ConfigManager.h"
 #include "redis/RedisManager.h"
+#include "mysql/MysqlManager.h"
 #include "GateServer.h"
 #include "LogicSystem.h"
 #include "HttpConnection.h"
@@ -84,45 +85,60 @@ int main()
 				return true;
 			}
 
+			const std::string& user = request_json["user"].asString();
+			const std::string& email = request_json["email"].asString();
+			const std::string& passwd = request_json["passwd"].asString();
+
 			// 去 redis 中查找邮箱对应的验证码
 			std::string verify_code;
 			bool b_success = RedisManager::GetInstance()
-				.get(CODE_PREFIX + request_json["email"].asString(), verify_code);
+				.get(CODE_PREFIX + email, verify_code);
 			if (!b_success) {
-				response_json["error"] = ErrorCode::EC_INVALID_EMAIL_OR_EXPIRED_VERIFY_CODE;
+				response_json["error"] = ErrorCode::EC_REGISTER_EXPIRED_VERIFY_CODE;
 				beast::ostream(conn->response().body()) << response_json.toStyledString();
 				
-				warn("Invalid email or Expired verify code.");
+				debug("Invalid email or Expired verify code.");
 				return true;
 			}
 
 			// 判断与用户输入的验证码是否一致
 			if (verify_code != request_json["verify_code"].asString()) {
-				response_json["error"] = ErrorCode::EC_VERIFY_CODE_ERROR;
+				response_json["error"] = ErrorCode::EC_REGISTER_VERIFY_CODE_ERROR;
 				beast::ostream(conn->response().body()) << response_json.toStyledString();
 
-				warn("Error verify code.");
+				debug("Error verify code.");
 				return true;
 			}
 
-			// TODO: 从数据库中判断用户是否存在
-
-
-			// TODO: to be deleted
-			{
-				response_json["user"] = request_json["user"].asString();
-				response_json["email"] = request_json["email"].asString();
-				response_json["passwd"] = request_json["passwd"].asString();
-				response_json["confirm"] = request_json["confirm"].asString();
-				response_json["verify_code"] = request_json["verify_code"].asString();
+			// 向数据库中注册用户
+			auto [uid, ec] = MysqlManager::GetInstance().regUser(user, email, passwd);
+			if (ec == -1) {
+				debug("MySQL error");
+				response_json["error"] = ErrorCode::EC_REGISTER_MYSQL_EXCEPTION;
+				return true;
 			}
-			response_json["error"] = 0;
+			if (uid == 0 && ec >= 0) {
+				if (ec == 1) {
+					debug("User exist.");
+					response_json["error"] = ErrorCode::EC_REGISTER_USER_EXIST;
+				}
+				else if (ec == 2) {
+					debug("Email exist.");
+					response_json["error"] = ErrorCode::EC_REGISTER_EMAIL_EXIST;
+				}
+				beast::ostream(conn->response().body()) << response_json.toStyledString();
+				return true;
+			}
+
+			response_json["uid"] = uid;
+			response_json["error"] = ErrorCode::EC_REGISTER_SUCCESS;
 			beast::ostream(conn->response().body()) << response_json.toStyledString();
 			return true;
 		});
 
-	ConfigManager config = ConfigManager::GetInstance();
-	unsigned short port = std::atoi(config["GateServer"]["Port"].c_str());
+	// 启动服务
+	RedisManager::GetInstance();
+	MysqlManager::GetInstance();
 
 	try {
 		unsigned short port = static_cast<unsigned short>(8080);

@@ -21,7 +21,7 @@ public:
 private:
 
     /**
-     * @brief 初始化 handlers
+     * @brief 初始化 handlers, 注册 http 请求发送成功后执行的回调函数
      */
     void initHttpHandlers();
 

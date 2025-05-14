@@ -25,10 +25,10 @@ private:
 		spdlog::init_thread_pool(8192, 1);
 
 		auto stdout_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-		stdout_sink->set_level(spdlog::level::debug);
+		stdout_sink->set_level(spdlog::level::trace);
 		
 		auto stderr_sink = std::make_shared<spdlog::sinks::stderr_color_sink_mt>();
-		stdout_sink->set_level(spdlog::level::err);
+		stderr_sink->set_level(spdlog::level::trace);
 
 		std::vector<spdlog::sink_ptr> sinks{ stdout_sink, stderr_sink };
 		_logger = std::make_shared<spdlog::async_logger>(spdlog::async_logger{

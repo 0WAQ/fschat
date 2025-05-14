@@ -10,6 +10,11 @@ add_executable(${PROJECT_NAME}
 		"redis/RedisManager.h"			"redis/RedisManager.cpp"
 		"redis/RedisConnectionPool.h"	"redis/RedisConnectionPool.cpp"
 
+		"mysql/SqlConnection.h"			"mysql/SqlConnection.cpp"
+		"mysql/SqlConnectionPool.h"		"mysql/SqlConnectionPool.cpp"
+		"mysql/MysqlDAO.h"				"mysql/MysqlDAO.cpp"
+		"mysql/MysqlManager.h"			"mysql/MysqlManager.cpp"
+
 		"rpc/message.pb.h"				"rpc/message.pb.cc"
 		"rpc/message.grpc.pb.h"			"rpc/message.grpc.pb.cc"
 		"rpc/message.proto"
@@ -30,6 +35,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 	${jsoncpp_INCLUDE_DIR}
 	${gRPC_INCLUDE_DIR}
 	${HIREDIS_INCLUDE_DIR}
+	${MYSQL_INCLUDE_DIR}
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -38,6 +44,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 	${jsoncpp_LIBRARY_DIR}/libjsoncpp.a
 	gRPC::grpc++
 	${HIREDIS_LIBRARY_DIR}/libhiredis.a
+	${MYSQLCPPCONN_LIBRARY}
+	${MYSQLCLIENT_LIBRARY}
+	# ${MYSQL_LIBRARY_DIR}/libmysqlcppconn.a  ${MYSQL_LIBRARY_DIR}/libmysqlclient.a
+	OpenSSL::SSL OpenSSL::Crypto
 )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
