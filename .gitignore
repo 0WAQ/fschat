@@ -10,6 +10,8 @@ client/out
 server/out
 
 client/CMakeLists.txt.user
+client/CMakePresets.json
+client/CMakeUserPresets.json
 
 server/CMakeSettings.json
 server/VerifyCodeServer/node_modules
