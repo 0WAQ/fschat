@@ -31,6 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         singleton.h
         HttpManager.h HttpManager.cc
         config.ini
+        TimerButton.h TimerButton.cc
 
     )
 # Define target properties for Android with Qt 6 as:
@@ -51,6 +52,7 @@ else()
     endif()
 endif()
 
+target_include_directories(client PRIVATE ${CMAKE_SOURCE_DIR})
 target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
